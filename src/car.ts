@@ -9,6 +9,7 @@ class Car {
 	// free fall position and velocity
 	private ff_pos: Vec2 = new Vec2(10, 30);
 	private ff_vel: Vec2 = new Vec2(10, -10);
+	private normal_acc: number = 0;
 	constructor(private track: Track | null) {
 	}
 	step(time: number): void {
@@ -21,9 +22,10 @@ class Car {
 			this.draw_loc.pixels();
 			log_vel(this.ff_vel.mag());
 			log_acc(GRAVITY.mag());
+			log_nacc(0);
 			return;
 		}
-		this.track.dist_to_loc(this.pos, this.draw_loc, this.dir);
+		let curvature = -this.track.dist_to_loc(this.pos, this.draw_loc, this.dir);
 		this.normal.x = this.dir.y;
 		this.normal.y = -this.dir.x;
 		this.vel += this.dir.dot(GRAVITY) * time;
@@ -41,12 +43,22 @@ class Car {
 		this.ff_vel.assign(this.dir);
 		this.ff_vel.scale(this.vel);
 		this.draw_loc.pixels();
+		this.normal_acc = this.vel * this.vel * curvature - this.normal.dot(GRAVITY);
 		log_vel(this.vel);
 		log_acc(this.dir.dot(GRAVITY));
+		log_nacc(this.normal_acc);
 	}
 	draw(ctx: CanvasRenderingContext2D): void {
 		const box_radius = 10;
-		ctx.fillStyle = 'rgb(0, 220, 59)';
+		if (this.track) {
+			let death = 1.0 - (Math.abs(this.normal_acc) / 150.0);
+			if (death < 0) {
+				death = 0;
+			}
+			ctx.fillStyle = 'rgb(0, ' + (death * 255) + ', 59)';
+		} else {
+			ctx.fillStyle = 'rgb(170, 222, 31)';
+		}
 		ctx.fillRect(this.draw_loc.x - box_radius, this.draw_loc.y - box_radius, box_radius*2, box_radius*2);
 		const force_len = 25;
 		ctx.strokeStyle = 'rgb(255, 255, 0)';

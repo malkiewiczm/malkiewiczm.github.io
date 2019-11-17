@@ -58,4 +58,7 @@ class Vec2 {
 		this.x *= amt;
 		this.y *= amt;
 	}
+	toString(): string {
+		return '{' + this.x + ', ' + this.y + '}';
+	}
 }
