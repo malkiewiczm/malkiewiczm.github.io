@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"outFile": "main.js",
+		"removeComments": true
+	},
+	"files": [
+		"src/shader.ts",
+		"src/matrix.ts",
+		"src/vec2.ts",
+		"src/track.ts",
+		"src/car.ts",
+		"src/main.ts"
+	]
+}
