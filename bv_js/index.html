@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>BV.js</title>
+	<meta name="description" content="">
+	<meta name="author" content="Saleh Dindar">
+	<link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+	<div id="loading">Loading</div>
+	<div id="ui-panel">
+		<span class="program-name">BezierView.js</span>
+		<span class="top-level">
+			<a id="top-level-load-file" href="#">Load File</a>
+		</span>
+		<span class="top-level">
+			<a id="top-level-shader-settings" href="#">Shader Settings</a>
+		</span>
+		<span class="top-level">
+			<a id="top-level-curvature" href="#">Curvature</a>
+		</span>
+		<span class="top-level">
+			<a id="top-level-display" href="#">Display</a>
+		</span>
+		<span class="top-level">
+			<a id="top-level-groups" href="#">Groups</a>
+		</span>
+		<span class="top-level">
+			<a id="top-level-other" href="#">Other</a>
+		</span>
+		<span class="top-level">
+			<a id="top-level-help" href="#">Help</a>
+		</span>
+
+		<div id="bottom-level-load-file" class="bottom-level">
+			<div class="fieldset">
+				<label for="select-model">Load Model</label>
+				<select id="select-model">
+					<option value="data/logo.bv"> Logo </option>
+					<option value="data/teapot.bv"> Teapot </option>
+					<option value="data/hex.bv"> Hexoid </option>
+					<option value="data/cubeg2.bv"> Cube, G2 </option>
+					<option value="data/male_head.bv"> Male Head </option>
+				</select>
+				<div>
+					<input id="upload-file" type="file" />
+				</div>
+			</div>
+		</div>
+
+		<div id="bottom-level-shader-settings" class="bottom-level">
+			<div class="fieldset">
+				<div>
+					<label>
+						<input type="checkbox" id="check-flip-normals"/> Flip Normals
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="checkbox" id="check-flat-shading"/> Flat Shading
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="checkbox" id="check-highlight"/> Highlight Lines
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="checkbox" id="check-reflection"/> Highlight Reflection
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="checkbox" id="check-wireframe"/> Wireframe
+					</label>
+				</div>
+				<div class="which-group-am-i-changing"></div>
+			</div>
+			<div class="fieldset">
+				<label for="select-highlight-density">Highlight Density</label>
+				<select id="select-highlight-density">
+					<option value="0.5">Default</option>
+					<option value="0.75">Half</option>
+					<option value="0.25">Double</option>
+				</select>
+			</div>
+		</div>
+
+		<div id="bottom-level-curvature" class="bottom-level">
+			<div class="fieldset">
+				<div>
+					<label>
+						<input type="checkbox" id="check-curvature"/> Show Curvature
+					</label>
+				</div>
+				<div>
+					<label for="select-curv-type">Curvature Type</label>
+					<select id="select-curv-type">
+						<option value="0">Gaussian</option>
+						<option value="1">Mean</option>
+						<option value="2">Max</option>
+						<option value="3">Min</option>
+					</select>
+				</div>
+				<div class="which-group-am-i-changing"></div>
+			</div>
+			<div class="fieldset">
+				<div class="legend">Curvature values</div>
+				<div>
+					min: <span id="min-crv-actual">--</span>
+				</div>
+				<div>
+					max: <span id="max-crv-actual">--</span>
+				</div>
+			</div>
+			<div class="fieldset">
+				<div class="legend">Curvature clamp</div>
+				<div>
+					<label>
+						min
+						<input style="width: 100px" type="text" id="min-crv-in">
+					</label>
+				</div>
+				<div>
+					<label>
+						max
+						<input style="width: 100px" type="text" id="max-crv-in">
+					</label>
+				</div>
+				<div>
+					<button id="restore-crv-in" disabled>Reset</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="bottom-level-display" class="bottom-level">
+			<div class="fieldset">
+				<div>
+					<label>
+						<input type="checkbox" id="check-control-mesh" /> Show Control Mesh
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="checkbox" id="check-bounding-box" /> Show Bounding Box
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="checkbox" id="check-patches" checked /> Show Patches
+					</label>
+				</div>
+				<div class="which-group-am-i-changing"></div>
+			</div>
+			<div class="fieldset">
+				<div class="legend">Lights</div>
+				<div>
+					<label>
+						<input type="checkbox" id="check-light-1"/> Light 1
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="checkbox" id="check-light-2"/> Light 2
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="checkbox" id="check-light-3"/> Light 3
+					</label>
+				</div>
+			</div>
+			<div class="fieldset">
+				<label for="select-patch-detail">Patch Detail</label>
+				<select id="select-patch-detail">
+					<option value="2">4 &times; 4</option>
+					<option value="3">8 &times; 8</option>
+					<option value="4">16 &times; 16</option>
+					<option value="5">32 &times; 32</option>
+					<option value="6">64 &times; 64</option> 
+				</select>
+			</div>
+		</div>
+
+		<div id="bottom-level-groups" class="bottom-level">
+			<div class="fieldset">
+				<div>
+					<label for="select-group">Group</label>
+					<select id="select-group">
+					</select>
+				</div>
+				<div>
+					<label for="select-group-color">Group Color</label>
+					<select id="select-group-color">
+					</select>
+				</div>
+				<div>
+					<button id="delete-group">Delete Group</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="bottom-level-other" class="bottom-level">
+			<div class="fieldset">
+				<div class="legend">Mouse Mode</div>
+				<div>
+					<input id="rotateModeTrue" type="radio" name="mouseMode" value="rotate" checked="">Rotate
+				</div>
+				<div>
+					<input id="rotateModeFalse" type="radio" name="mouseMode" value="clip">Clip
+				</div>
+			</div>
+			<div class="fieldset">
+				<div class="legend">Saved Positions</div>
+				<div>
+					<button id="save-position">Save Position</button>
+				</div>
+				<div>
+					<button id="remove-position">Remove Position</button>
+				</div>
+				<div>
+					<label for="select-load-position">Load Position</label>
+					<select id="select-load-position">
+					</select>
+				</div>
+				<div>
+					<button id="restore-load-position">Reload Current</button>
+				</div>
+			</div>
+			<div class="fieldset">
+				<button id="btn-reset">Reset Projection</button>
+			</div>
+		</div>
+
+		<div id="bottom-level-help" class="bottom-level">
+			<p><b> Controls </b><br>
+			Left Mouse: Rotate or Clip <br>
+			Right Mouse: Pan <br>
+			Scroll Wheel: Zoom <br>
+			Scroll Wheel + Alt: Scale <br>
+			Q and E: Z-axis rotation <br>
+			ESC: Reset projection <br></p>
+			<p> BV files can also be loaded by dragging and dropping on this window </p>
+			<p><b> About </b><br>
+			This is an implementation of 
+			<a href="http://www.cise.ufl.edu/research/SurfLab/bview/" target="_blank"> SurfLab's BezierView</a> using WebGL.<br>
+			<a href="https://bitbucket.org/surflab/bv.js/" target="_blank"><i class="fa fa-bitbucket"></i> Source code</a></p>
+		</div>
+	</div>
+	<canvas id="drawing"></canvas>
+
+	<!--<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>-->
+	<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>-->
+	<script src="https://cdn.rawgit.com/eligrey/FileSaver.js/62d219a0fac54b94cd4f230e7bfc55aa3f8dcfa4/FileSaver.js"></script>
+	<script src="js/vec3.js"></script>
+	<script src="js/patch.js"></script>
+	<script src="js/bvfile.js"></script>
+	<script src="js/mat4.js"></script>
+	<script src="js/draw.js"></script>
+    <script src="js/ui.js"></script>
+  </body>
+</html>

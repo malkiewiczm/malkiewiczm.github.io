@@ -1,0 +1,131 @@
+div#ui-brand {
+	z-index: 3;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 30px;
+	width: 100%;
+	font-size: 18pt;
+	padding: 6px;
+}
+
+a#bar-menu {
+	margin: 4px;
+}
+
+#loading {
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 15px;
+	z-index: 200;
+	font-size: 24pt;
+	background-color: rgb(166, 200, 229);
+	color: black;
+}
+
+#ui-panel {
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 5px;
+	opacity: 0.8;
+	width: 100%;
+	z-index:100;
+	background-color: #ecf0f1;
+}
+
+#ui-panel .program-name {
+	font-size:18pt;
+	font-weight: bold;
+}
+
+#ui-panel .top-level > a {
+	opacity: 1.0;
+	color: black;
+	font-size: 16pt;
+	text-decoration: underline;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+#ui-panel .top-level > a:hover {
+	color: white;
+	background-color: black;
+	font-size: 16pt;
+	text-decoration: none;
+}
+
+#ui-panel .bottom-level {
+	display:none;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+
+#ui-panel div {
+	padding: 5px;
+}
+
+a.checked i.check {
+	visibility: visible;
+}
+a i.check {
+	visibility: hidden;
+}
+#ui-panel > * {
+	opacity: 1.0;
+}
+.navbar .fa {
+	font-size: 130%;
+}
+canvas#drawing {
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: default;
+	width: 100%;
+	height: 100%;
+}
+
+.navbar-header img {
+	float: left;
+	height: 40px;
+	margin:2.5px 5px;
+}
+
+.fieldset {
+	display: inline-block;
+	border-top: solid 1px black;
+	vertical-align: top;
+	margin: 5px;
+}
+
+.legend {
+	font-weight: bold;
+}
+
+body {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-image: url("../img/watermark.png");
+	background-repeat: repeat;
+}
+
+.noselect {
+	user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+}
+
+.which-group-am-i-changing {
+	font-style: italic;
+	width: 200px;
+}
