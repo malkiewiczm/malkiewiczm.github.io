@@ -1,0 +1,538 @@
+<!--
+This file is packed, you can view the source code online at:
+https://github.com/malkiewiczm/soap_lye_calculator
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Soap Lye Calculator</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+<script>
+window.addEventListener("load",function(){function R(){return{dual_lye:0,naoh_part:100,naoh_purity:1,koh_part:0,koh_purity:.9,oil_weight:null,water:2,water_mode:0,super_fat:.05,oil_list:[],oil_parts:[]}}function S(){Aa.replaceChildren();var a=0;C.forEach(function(d){var e=da?da.test(d.name):!1;if(e){e=h(Aa,"tr","");var u=h(h(e,"td",""),"button","Add");u.type="button";u.addEventListener("click",function(){b.oil_list.push(d.id);b.oil_parts.push(0);r(-1)});h(e,"td",d.name.toString());h(e,"td",(Math.round(1E4*
+d.naoh_sap)/1E4).toString());h(e,"td",d.koh_sap.toString());h(e,"td",d.hard.toString());h(e,"td",d.cleansing.toString());h(e,"td",d.bubbly.toString());h(e,"td",d.conditioning.toString());h(e,"td",d.creamy.toString());h(e,"td",d.iodine.toString());h(e,"td",d.ins.toString());h(e,"td",d.lauric.toString());h(e,"td",d.myristic.toString());h(e,"td",d.palmitic.toString());h(e,"td",d.stearic.toString());h(e,"td",d.ricinoleic.toString());h(e,"td",d.oleic.toString());h(e,"td",d.linoleic.toString());h(e,"td",
+d.linolenic.toString());h(e,"td",d.saturated.toString());h(e,"td",d.mono_unsaturated.toString());h(e,"td",d.poly_unsaturated.toString());h(h(e,"td",""),"button","Find Similar Oils").addEventListener("click",function(){Ma(d)});h(e,"td",Math.round(ea(d)).toString())}else++a});Na.innerText="Showing "+(C.length-a).toString()+" out of "+C.length+" oils"}function n(a){C.sort(function(d,e){return e[a]-d[a]});T=C[0];S()}function Ma(a){T=a;C.sort(function(d,e){return ea(d)-ea(e)});S()}function ea(a){if(null==
+T)return 0;var d=Ba(T);a=Ba(a);var e=d.length,u=U(d),m=U(a);if(0==u||0==m)return 1E5;for(var x=0,y=0;y<e;++y){var A=d[y]/u-a[y]/m;x+=A*A}return x/e*1E5}function Ba(a){return[a.lauric,a.myristic,a.palmitic,a.stearic,a.ricinoleic,a.oleic,a.linoleic,a.linolenic]}function fa(){Ca!=F.value&&(da=Da(F.value),Ca=F.value,S())}function r(a){function d(f,l,p,g,z,v,w,V){var Ea=.5*G.width-100,aa=Ea/100,H=24*z,W=v*G.width*.5+100;g.font="16px arial";g.fillStyle="#000000";g.fillText(f,W-100+10*v,H+20);g.fillStyle=
+l<p?"#a57abc":"#b1c8dd";g.fillRect(W,H,Ea,20);g.fillStyle="#ceb1dd";l<p&&g.fillRect(W+l*aa,H,(p-l)*aa,20);w.forEach(function(I){g.fillStyle="#000000";I=W+(0>I?0:100<I?100:I)*aa;g.beginPath();g.moveTo(I-10,H);g.lineTo(I,H+20);g.lineTo(I+10,H);g.fill()});g.strokeStyle="#000000";e(g,W,H,(0>V?0:100<V?100:V)*aa,20)}function e(f,l,p,g,z){if(0!=g){f.beginPath();for(var v=-1,w=7;w<=g;w+=7){var V=l+w-7;v=l+w;f.moveTo(V,p);f.lineTo(v,p+z)}0<v&&v<l+g&&(f.moveTo(v,p),f.lineTo(l+g,p+z*(v-l-g)/-7));f.moveTo(l+
+g,p);f.lineTo(l+g,p+z);f.stroke()}}var u=U(b.oil_parts),m=null==b.oil_weight?u:b.oil_weight,x=0,y=0,A=1/(1+b.super_fat),X=0,ha=0,ia=0,ja=0,ka=0,la=0,Fa=0,ma=0,na=0,oa=0,pa=0,qa=0,ra=0,sa=0,ta=0,Ga=0,Ha=0,Ia=0,Y=0,Z=0,ba=0==b.naoh_part+b.koh_part?1:b.naoh_part/(b.naoh_part+b.koh_part);switch(b.dual_lye){case 0:Y=1/b.naoh_purity;Z=0;J.disabled=!0;K.disabled=!0;L.disabled=!1;M.disabled=!0;break;case 1:Y=0;Z=1/b.koh_purity;J.disabled=!0;K.disabled=!0;L.disabled=!0;M.disabled=!1;break;case 2:Y=ba/b.naoh_purity;
+Z=(1-ba)/b.koh_purity;J.disabled=!1;K.disabled=!1;L.disabled=!1;M.disabled=!1;break;default:J.disabled=!0,K.disabled=!0,L.disabled=!0,M.disabled=!0}J.value=b.naoh_part.toString();K.value=b.koh_part.toString();L.value=(100*b.naoh_purity).toString();M.value=(100*b.koh_purity).toString();J.style.backgroundColor="";K.style.backgroundColor="";L.style.backgroundColor="";M.style.backgroundColor="";Ja.disabled=null==b.oil_weight;ua.checked=0==b.dual_lye;va.checked=1==b.dual_lye;wa.checked=2==b.dual_lye;c("header_required_naoh_info").style.display=
+1==b.dual_lye?"none":"";c("required_naoh_info").style.display=1==b.dual_lye?"none":"";c("header_required_koh_info").style.display=0==b.dual_lye?"none":"";c("required_koh_info").style.display=0==b.dual_lye?"none":"";N.value=null==b.oil_weight?"":b.oil_weight.toString();N.style.backgroundColor="";xa.value=(100*b.super_fat).toString();xa.style.backgroundColor="";ya.value=(100*(1-A)).toString();ya.style.backgroundColor="";za.replaceChildren();c("lye_multiplier_info").innerText=A.toString();c("super_fat_percent_info").innerText=
+k(100*b.super_fat).toString();b.oil_list.forEach(function(f,l){f=q[f];var p=h(za,"tr",""),g=h(h(p,"td",""),"button","Remove");g.type="button";g.addEventListener("click",function(){b.oil_list.splice(l,1);b.oil_parts.splice(l,1);var w=b.oil_list.length-1;r(0>l?0:l>w?w:l)});h(p,"td",f.name);var z=h(p,"input","");z.value=b.oil_parts[l].toString();z.addEventListener("change",function(){var w=parseFloat(z.value);!isNaN(w)&&isFinite(w)?(b.oil_parts[l]=w,r(l)):z.style.backgroundColor="red"});l==a&&z.focus();
+if(0>=u)h(p,"td","--"),h(p,"td","0");else{g=b.oil_parts[l]/u;var v=g*m;h(p,"td",(Math.round(1E6*g)/1E4).toString());h(p,"td",(Math.round(1E4*v)/1E4).toString());x+=v*Y*A*f.naoh_sap;y+=v*Z*A*f.koh_sap;X+=f.hard*g;ha+=f.cleansing*g;ia+=f.bubbly*g;ja+=f.conditioning*g;ka+=f.creamy*g;la+=f.iodine*g;Fa+=f.ins*g;ma+=f.lauric*g;na+=f.myristic*g;oa+=f.palmitic*g;pa+=f.stearic*g;qa+=f.ricinoleic*g;ra+=f.oleic*g;sa+=f.linoleic*g;ta+=f.linolenic*g;Ga+=f.saturated*g;Ha+=f.mono_unsaturated*g;Ia+=f.poly_unsaturated*
+g}});var D=0,B=x+y;2==b.water_mode?(D=m*b.water,ca.value=(100*b.water).toString(),0==m||0==B?(O.value="Unknown until oils are added",P.value="Unknown until oils are added"):(O.value=(B/(B+D)*100).toString(),P.value=(D/B).toString())):(0==b.water_mode?(D=B*b.water,P.value=b.water.toString(),O.value=(100/(b.water+1)).toString()):(D=B/b.water-B,O.value=(100*b.water).toString(),P.value=(1/b.water-1).toString()),ca.value=0==m||0==B?"Unknown until oils are added":(D/m*100).toString());O.style.backgroundColor=
+"";P.style.backgroundColor="";ca.style.backgroundColor="";var Q=h(za,"tr","");Q.style.backgroundColor="#d5daea";h(Q,"td","");h(Q,"td","Sum");h(Q,"td",u.toString());h(Q,"td","100");h(Q,"td",m.toString());c("oil_weight_info").innerText=m.toString()+(null==b.oil_weight?" (inferred from recipe)":" (explicitly set above)");c("required_water_info").innerText=k(D).toString();c("naoh_percent_info").innerText=k(100*ba).toString();c("naoh_multiplier_info").innerText=(Math.round(1E4*Y)/1E4).toString();c("koh_percent_info").innerText=
+k(100*(1-ba)).toString();c("koh_multiplier_info").innerText=(Math.round(1E4*Z)/1E4).toString();c("required_naoh_info").innerText=k(x).toString();c("required_koh_info").innerText=k(y).toString();c("water_lye_sum_info").innerText=k(D+B).toString();c("oil_water_lye_sum_info").innerText=k(m+D+B).toString();c("recipe_hard_info").innerText=k(X).toString();c("recipe_cleansing_info").innerText=k(ha).toString();c("recipe_bubbly_info").innerText=k(ia).toString();c("recipe_conditioning_info").innerText=k(ja).toString();
+c("recipe_creamy_info").innerText=k(ka).toString();c("recipe_iodine_info").innerText=k(la).toString();c("recipe_ins_info").innerText=k(Fa).toString();c("recipe_lauric_info").innerText=k(ma).toString();c("recipe_myristic_info").innerText=k(na).toString();c("recipe_palmitic_info").innerText=k(oa).toString();c("recipe_stearic_info").innerText=k(pa).toString();c("recipe_ricinoleic_info").innerText=k(qa).toString();c("recipe_oleic_info").innerText=k(ra).toString();c("recipe_linoleic_info").innerText=k(sa).toString();
+c("recipe_linolenic_info").innerText=k(ta).toString();c("recipe_saturated_info").innerText=k(Ga).toString();c("recipe_mono_unsaturated_info").innerText=k(Ha).toString();c("recipe_poly_unsaturated_info").innerText=k(Ia).toString();t.clearRect(0,0,G.width,G.height);d("Hard",29,54,t,0,0,b.oil_list.map(function(f){return q[f].hard}),X);d("Cleansing",12,22,t,1,0,b.oil_list.map(function(f){return q[f].cleansing}),ha);d("Bubbly",14,46,t,2,0,b.oil_list.map(function(f){return q[f].bubbly}),ia);d("Conditioning",
+44,69,t,3,0,b.oil_list.map(function(f){return q[f].conditioning}),ja);d("Creamy",16,48,t,4,0,b.oil_list.map(function(f){return q[f].creamy}),ka);d("Iodine",41,70,t,5,0,b.oil_list.map(function(f){return q[f].iodine}),la);d("Lauric",0,0,t,0,1,b.oil_list.map(function(f){return q[f].lauric}),ma);d("Myristic",0,0,t,1,1,b.oil_list.map(function(f){return q[f].myristic}),na);d("Palmitic",0,0,t,2,1,b.oil_list.map(function(f){return q[f].palmitic}),oa);d("Stearic",0,0,t,3,1,b.oil_list.map(function(f){return q[f].stearic}),
+pa);d("Ricinoleic",0,0,t,4,1,b.oil_list.map(function(f){return q[f].ricinoleic}),qa);d("Oleic",0,0,t,5,1,b.oil_list.map(function(f){return q[f].oleic}),ra);d("Linoleic",0,0,t,6,1,b.oil_list.map(function(f){return q[f].linoleic}),sa);d("Linolenic",0,0,t,7,1,b.oil_list.map(function(f){return q[f].linolenic}),ta);Oa.innerText=JSON.stringify(b)}function c(a){var d=document.getElementById(a);if(d)return d;a='Could not find id "'+a+'" in document';document.body.innerText=a;throw a;}function Da(a){try{return new RegExp(a,
+"i")}catch(d){return null}}function k(a){return Math.round(1E3*a)/1E3}function E(a,d){a.addEventListener("change",function(){var e=parseFloat(a.value);!isNaN(e)&&isFinite(e)&&d(e)?r(-1):a.style.backgroundColor="red"})}function Pa(a,d){try{var e=JSON.parse(a);if("object"!==typeof e)return"Input is not an object";var u=R(),m;for(m in u){if(!(m in e))return"Missing property: "+m;var x=typeof e[m],y=typeof u[m];if("oil_weight"==m){if(null!==e[m]&&"number"!=x)return m+" should be number or null but was "+
+x}else if(x!==y)return"For property "+m+" expected type "+y+" but got "+x}if(!Ka(e.oil_list))return"oil_list should be a list of numbers";if(!Ka(e.oil_parts))return"oil_parts should be a list of numbers";if(e.oil_list.length!==e.oil_parts.length)return"Mismatch on oil list size ("+e.oil_list.length.toString()+") vs oil parts size ("+e.oil_parts.length.toString()+")";for(a=0;a<e.oil_list.length;++a){var A=e.oil_list[a];if(!q[A])return"Oil with id "+A+" is not recognized"}d(e)}catch(X){return"Import encountered problems: "+
+X.toString()}return""}function Ka(a){if("object"!=typeof a||"number"!=typeof a.length)return!1;for(var d=0;d<a.length;++d)if("number"!=typeof a[d])return!1;return!0}function Qa(){if(0<b.oil_list.length)return!1;var a=R(),d=b,e;for(e in a)if(d[e]!==a[e])return!1;return!0}function U(a){return a.reduce(function(d,e){return d+e},0)}function h(a,d,e){d=document.createElement(d);0<e.length&&d.appendChild(document.createTextNode(e.toString()));a.appendChild(d);return d}var b=R(),C=[{id:145,name:"Abyssinian Oil",
+koh_sap:.168,naoh_sap:.11975606487257179,iodine:98,ins:70,lauric:0,myristic:0,palmitic:3,stearic:2,ricinoleic:0,oleic:18,linoleic:11,linolenic:4,hard:6,cleansing:0,bubbly:0,conditioning:94,creamy:80,saturated:0,mono_unsaturated:0,poly_unsaturated:0},{id:114,name:"Almond Butter",koh_sap:.188,naoh_sap:.13401273926216367,iodine:70,ins:118,lauric:0,myristic:1,palmitic:9,stearic:15,ricinoleic:0,oleic:58,linoleic:16,linolenic:0,hard:25,cleansing:1,bubbly:1,conditioning:74,creamy:24,saturated:25,mono_unsaturated:58,
+poly_unsaturated:16},{id:1,name:"Almond Oil, sweet",koh_sap:.195,naoh_sap:.13900257529852084,iodine:99,ins:97,lauric:0,myristic:0,palmitic:7,stearic:0,ricinoleic:0,oleic:71,linoleic:18,linolenic:0,hard:7,cleansing:0,bubbly:0,conditioning:89,creamy:7,saturated:7,mono_unsaturated:71,poly_unsaturated:18},{id:68,name:"Aloe Butter",koh_sap:.24,naoh_sap:.17108009267510255,iodine:9,ins:241,lauric:45,myristic:18,palmitic:8,stearic:3,ricinoleic:0,oleic:7,linoleic:2,linolenic:0,hard:74,cleansing:63,bubbly:63,
+conditioning:9,creamy:11,saturated:74,mono_unsaturated:7,poly_unsaturated:2},{id:96,name:"Andiroba Oil,karaba,crabwood",koh_sap:.188,naoh_sap:.13401273926216367,iodine:68,ins:120,lauric:0,myristic:0,palmitic:28,stearic:8,ricinoleic:0,oleic:51,linoleic:9,linolenic:0,hard:36,cleansing:0,bubbly:0,conditioning:60,creamy:36,saturated:36,mono_unsaturated:51,poly_unsaturated:9},{id:2,name:"Apricot Kernal Oil",koh_sap:.195,naoh_sap:.13900257529852084,iodine:100,ins:91,lauric:0,myristic:0,palmitic:6,stearic:0,
+ricinoleic:0,oleic:66,linoleic:27,linolenic:0,hard:6,cleansing:0,bubbly:0,conditioning:93,creamy:6,saturated:6,mono_unsaturated:66,poly_unsaturated:27},{id:58,name:"Argan Oil",koh_sap:.191,naoh_sap:.13615124042060245,iodine:95,ins:95,lauric:0,myristic:1,palmitic:14,stearic:0,ricinoleic:0,oleic:46,linoleic:34,linolenic:1,hard:15,cleansing:1,bubbly:1,conditioning:81,creamy:14,saturated:15,mono_unsaturated:46,poly_unsaturated:35},{id:53,name:"Avocado butter",koh_sap:.187,naoh_sap:.13329990554268406,
+iodine:67,ins:120,lauric:0,myristic:0,palmitic:21,stearic:10,ricinoleic:0,oleic:53,linoleic:6,linolenic:2,hard:31,cleansing:0,bubbly:0,conditioning:61,creamy:31,saturated:31,mono_unsaturated:53,poly_unsaturated:8},{id:3,name:"Avocado Oil",koh_sap:.186,naoh_sap:.13258707182320448,iodine:86,ins:99,lauric:0,myristic:0,palmitic:20,stearic:2,ricinoleic:0,oleic:58,linoleic:12,linolenic:0,hard:22,cleansing:0,bubbly:0,conditioning:70,creamy:22,saturated:22,mono_unsaturated:58,poly_unsaturated:12},{id:4,name:"Babassu Oil",
+koh_sap:.245,naoh_sap:.17464426127250052,iodine:15,ins:230,lauric:50,myristic:20,palmitic:11,stearic:4,ricinoleic:0,oleic:10,linoleic:0,linolenic:0,hard:85,cleansing:70,bubbly:70,conditioning:10,creamy:15,saturated:85,mono_unsaturated:10,poly_unsaturated:0},{id:59,name:"Baobab Oil",koh_sap:.2,naoh_sap:.1425667438959188,iodine:75,ins:125,lauric:0,myristic:1,palmitic:24,stearic:4,ricinoleic:0,oleic:37,linoleic:28,linolenic:2,hard:29,cleansing:1,bubbly:1,conditioning:67,creamy:28,saturated:29,mono_unsaturated:37,
+poly_unsaturated:30},{id:5,name:"Beeswax",koh_sap:.094,naoh_sap:.06700636963108184,iodine:10,ins:84,lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:90,cleansing:0,bubbly:0,conditioning:50,creamy:50,saturated:0,mono_unsaturated:0,poly_unsaturated:0},{id:6,name:"Black Cumin Seed Oil, nigella sativa",koh_sap:.195,naoh_sap:.13900257529852084,iodine:133,ins:62,lauric:0,myristic:0,palmitic:13,stearic:3,ricinoleic:0,oleic:22,linoleic:60,linolenic:1,hard:16,cleansing:0,
+bubbly:0,conditioning:83,creamy:16,saturated:16,mono_unsaturated:22,poly_unsaturated:61},{id:136,name:"Black Current Seed Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:178,ins:12,lauric:0,myristic:0,palmitic:6,stearic:2,ricinoleic:0,oleic:13,linoleic:46,linolenic:29,hard:8,cleansing:0,bubbly:0,conditioning:88,creamy:8,saturated:8,mono_unsaturated:13,poly_unsaturated:75},{id:66,name:"Borage Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:135,ins:55,lauric:0,myristic:0,palmitic:10,stearic:4,
+ricinoleic:0,oleic:20,linoleic:43,linolenic:5,hard:14,cleansing:0,bubbly:0,conditioning:68,creamy:14,saturated:14,mono_unsaturated:20,poly_unsaturated:48},{id:146,name:"Brazil Nut Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:100,ins:90,lauric:0,myristic:0,palmitic:13,stearic:11,ricinoleic:0,oleic:39,linoleic:36,linolenic:0,hard:24,cleansing:0,bubbly:0,conditioning:75,creamy:24,saturated:24,mono_unsaturated:39,poly_unsaturated:36},{id:138,name:"Broccoli Seed Oil, Brassica Oleracea",koh_sap:.172,
+naoh_sap:.12260739975049015,iodine:105,ins:67,lauric:0,myristic:0,palmitic:3,stearic:1,ricinoleic:0,oleic:14,linoleic:11,linolenic:9,hard:7,cleansing:0,bubbly:0,conditioning:93,creamy:6,saturated:6,mono_unsaturated:70,poly_unsaturated:24},{id:147,name:"Buriti Oil",koh_sap:.223,naoh_sap:.15896191944394947,iodine:70,ins:153,lauric:0,myristic:0,palmitic:17,stearic:2,ricinoleic:0,oleic:71,linoleic:7,linolenic:1,hard:19,cleansing:0,bubbly:0,conditioning:79,creamy:19,saturated:19,mono_unsaturated:71,poly_unsaturated:8},
+{id:60,name:"Camelina Seed Oil",koh_sap:.188,naoh_sap:.13401273926216367,iodine:144,ins:44,lauric:0,myristic:0,palmitic:6,stearic:2,ricinoleic:0,oleic:24,linoleic:19,linolenic:45,hard:8,cleansing:0,bubbly:0,conditioning:88,creamy:8,saturated:8,mono_unsaturated:24,poly_unsaturated:64},{id:80,name:"Camellia Oil, Tea Seed",koh_sap:.193,naoh_sap:.13757690785956164,iodine:78,ins:115,lauric:0,myristic:0,palmitic:9,stearic:2,ricinoleic:0,oleic:77,linoleic:8,linolenic:0,hard:11,cleansing:0,bubbly:0,conditioning:85,
+creamy:11,saturated:11,mono_unsaturated:77,poly_unsaturated:8},{id:142,name:"Candelilla Wax",koh_sap:.044,naoh_sap:.031364683657102134,iodine:32,ins:12,lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:68,cleansing:0,bubbly:0,conditioning:60,creamy:60,saturated:0,mono_unsaturated:0,poly_unsaturated:0},{id:7,name:"Canola Oil",koh_sap:.186,naoh_sap:.13258707182320448,iodine:110,ins:56,lauric:0,myristic:0,palmitic:4,stearic:2,ricinoleic:0,oleic:61,linoleic:21,
+linolenic:9,hard:6,cleansing:0,bubbly:0,conditioning:91,creamy:6,saturated:6,mono_unsaturated:61,poly_unsaturated:30},{id:84,name:"Canola Oil, high oleic",koh_sap:.186,naoh_sap:.13258707182320448,iodine:96,ins:90,lauric:0,myristic:0,palmitic:4,stearic:2,ricinoleic:0,oleic:74,linoleic:12,linolenic:4,hard:6,cleansing:0,bubbly:0,conditioning:90,creamy:6,saturated:6,mono_unsaturated:74,poly_unsaturated:16},{id:144,name:"Carrot Seed Oil, cold pressed",koh_sap:.144,naoh_sap:.10264805560506152,iodine:56,
+ins:0,lauric:0,myristic:0,palmitic:4,stearic:0,ricinoleic:0,oleic:80,linoleic:13,linolenic:0,hard:4,cleansing:0,bubbly:0,conditioning:93,creamy:4,saturated:4,mono_unsaturated:80,poly_unsaturated:13},{id:8,name:"Castor Oil",koh_sap:.18,naoh_sap:.1283100695063269,iodine:86,ins:95,lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:90,oleic:4,linoleic:4,linolenic:0,hard:0,cleansing:0,bubbly:90,conditioning:98,creamy:90,saturated:0,mono_unsaturated:94,poly_unsaturated:4},{id:79,name:"Cherry Kern1 Oil, p. avium",
+koh_sap:.19,naoh_sap:.13543840670112287,iodine:128,ins:62,lauric:0,myristic:0,palmitic:8,stearic:3,ricinoleic:0,oleic:31,linoleic:45,linolenic:11,hard:11,cleansing:0,bubbly:0,conditioning:87,creamy:11,saturated:11,mono_unsaturated:31,poly_unsaturated:56},{id:90,name:"Cherry Kern2 Oil, p. cerasus",koh_sap:.192,naoh_sap:.13686407414008203,iodine:118,ins:74,lauric:0,myristic:0,palmitic:6,stearic:3,ricinoleic:0,oleic:50,linoleic:40,linolenic:0,hard:9,cleansing:0,bubbly:0,conditioning:90,creamy:9,saturated:9,
+mono_unsaturated:50,poly_unsaturated:40},{id:56,name:"Chicken Fat",koh_sap:.195,naoh_sap:.13900257529852084,iodine:69,ins:130,lauric:0,myristic:1,palmitic:25,stearic:7,ricinoleic:0,oleic:38,linoleic:21,linolenic:0,hard:33,cleansing:1,bubbly:1,conditioning:59,creamy:32,saturated:33,mono_unsaturated:38,poly_unsaturated:21},{id:9,name:"Cocoa Butter",koh_sap:.194,naoh_sap:.13828974157904123,iodine:37,ins:157,lauric:0,myristic:0,palmitic:28,stearic:33,ricinoleic:0,oleic:35,linoleic:3,linolenic:0,hard:61,
+cleansing:0,bubbly:0,conditioning:38,creamy:61,saturated:61,mono_unsaturated:35,poly_unsaturated:3},{id:10,name:"Coconut Oil, 76 deg",koh_sap:.257,naoh_sap:.18319826590625565,iodine:10,ins:258,lauric:48,myristic:19,palmitic:9,stearic:3,ricinoleic:0,oleic:8,linoleic:2,linolenic:0,hard:79,cleansing:67,bubbly:67,conditioning:10,creamy:12,saturated:79,mono_unsaturated:8,poly_unsaturated:2},{id:72,name:"Coconut Oil, 92 deg",koh_sap:.257,naoh_sap:.18319826590625565,iodine:3,ins:258,lauric:48,myristic:19,
+palmitic:9,stearic:3,ricinoleic:0,oleic:8,linoleic:2,linolenic:0,hard:79,cleansing:67,bubbly:67,conditioning:10,creamy:12,saturated:79,mono_unsaturated:8,poly_unsaturated:2},{id:65,name:"Coconut Oil, fractionated",koh_sap:.325,naoh_sap:.23167095883086805,iodine:1,ins:324,lauric:2,myristic:1,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:100,cleansing:100,bubbly:100,conditioning:0,creamy:0,saturated:90,mono_unsaturated:0,poly_unsaturated:0},{id:93,name:"Coffee Bean Oil, green",
+koh_sap:.185,naoh_sap:.13187423810372487,iodine:85,ins:100,lauric:0,myristic:0,palmitic:38,stearic:8,ricinoleic:0,oleic:9,linoleic:39,linolenic:2,hard:46,cleansing:0,bubbly:0,conditioning:50,creamy:46,saturated:46,mono_unsaturated:9,poly_unsaturated:41},{id:74,name:"Coffee Bean Oil, roasted",koh_sap:.18,naoh_sap:.1283100695063269,iodine:87,ins:93,lauric:0,myristic:0,palmitic:40,stearic:0,ricinoleic:0,oleic:8,linoleic:38,linolenic:2,hard:40,cleansing:0,bubbly:0,conditioning:48,creamy:40,saturated:40,
+mono_unsaturated:8,poly_unsaturated:40},{id:102,name:"Cohune Oil",koh_sap:.205,naoh_sap:.14613091249331675,iodine:30,ins:175,lauric:51,myristic:13,palmitic:8,stearic:3,ricinoleic:0,oleic:18,linoleic:3,linolenic:0,hard:75,cleansing:64,bubbly:64,conditioning:21,creamy:11,saturated:75,mono_unsaturated:18,poly_unsaturated:3},{id:11,name:"Corn Oil",koh_sap:.192,naoh_sap:.13686407414008203,iodine:117,ins:69,lauric:0,myristic:0,palmitic:12,stearic:2,ricinoleic:0,oleic:32,linoleic:51,linolenic:1,hard:14,
+cleansing:0,bubbly:0,conditioning:84,creamy:14,saturated:14,mono_unsaturated:32,poly_unsaturated:52},{id:12,name:"Cottonseed Oil",koh_sap:.194,naoh_sap:.13828974157904123,iodine:108,ins:89,lauric:0,myristic:0,palmitic:13,stearic:13,ricinoleic:0,oleic:18,linoleic:52,linolenic:1,hard:26,cleansing:0,bubbly:0,conditioning:71,creamy:26,saturated:26,mono_unsaturated:18,poly_unsaturated:53},{id:92,name:"Cranberry Seed Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:150,ins:40,lauric:0,myristic:0,palmitic:6,
+stearic:2,ricinoleic:0,oleic:23,linoleic:37,linolenic:32,hard:8,cleansing:0,bubbly:0,conditioning:92,creamy:8,saturated:8,mono_unsaturated:23,poly_unsaturated:69},{id:104,name:"Crisco, new w/palm",koh_sap:.193,naoh_sap:.13757690785956164,iodine:111,ins:82,lauric:0,myristic:0,palmitic:20,stearic:5,ricinoleic:0,oleic:28,linoleic:40,linolenic:6,hard:25,cleansing:0,bubbly:0,conditioning:74,creamy:25,saturated:25,mono_unsaturated:28,poly_unsaturated:46},{id:13,name:"Crisco, old",koh_sap:.192,naoh_sap:.13686407414008203,
+iodine:93,ins:115,lauric:0,myristic:0,palmitic:13,stearic:13,ricinoleic:0,oleic:18,linoleic:52,linolenic:0,hard:26,cleansing:0,bubbly:0,conditioning:70,creamy:26,saturated:26,mono_unsaturated:18,poly_unsaturated:52},{id:101,name:"Cupuacu Butter",koh_sap:.192,naoh_sap:.13686407414008203,iodine:39,ins:153,lauric:0,myristic:0,palmitic:8,stearic:35,ricinoleic:0,oleic:42,linoleic:2,linolenic:0,hard:54,cleansing:0,bubbly:0,conditioning:44,creamy:43,saturated:54,mono_unsaturated:42,poly_unsaturated:2},{id:87,
+name:"Duck Fat, flesh and skin",koh_sap:.194,naoh_sap:.13828974157904123,iodine:72,ins:122,lauric:0,myristic:1,palmitic:26,stearic:9,ricinoleic:0,oleic:44,linoleic:13,linolenic:1,hard:36,cleansing:1,bubbly:1,conditioning:58,creamy:35,saturated:36,mono_unsaturated:44,poly_unsaturated:14},{id:14,name:"Emu Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:60,ins:128,lauric:0,myristic:0,palmitic:23,stearic:9,ricinoleic:0,oleic:47,linoleic:8,linolenic:0,hard:32,cleansing:0,bubbly:0,conditioning:55,creamy:32,
+saturated:32,mono_unsaturated:47,poly_unsaturated:8},{id:15,name:"Evening Primrose Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:160,ins:30,lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:80,linolenic:9,hard:0,cleansing:0,bubbly:0,conditioning:89,creamy:0,saturated:0,mono_unsaturated:0,poly_unsaturated:89},{id:16,name:"Flax Oil, linseed",koh_sap:.19,naoh_sap:.13543840670112287,iodine:180,ins:-6,lauric:0,myristic:0,palmitic:6,stearic:3,ricinoleic:0,oleic:27,linoleic:13,
+linolenic:50,hard:9,cleansing:0,bubbly:0,conditioning:90,creamy:9,saturated:9,mono_unsaturated:27,poly_unsaturated:63},{id:95,name:"Ghee, any bovine",koh_sap:.227,naoh_sap:.16181325432186783,iodine:30,ins:191,lauric:4,myristic:11,palmitic:28,stearic:12,ricinoleic:0,oleic:19,linoleic:2,linolenic:1,hard:55,cleansing:15,bubbly:15,conditioning:22,creamy:40,saturated:55,mono_unsaturated:19,poly_unsaturated:3},{id:17,name:"Goose Fat",koh_sap:.192,naoh_sap:.13686407414008203,iodine:65,ins:130,lauric:0,myristic:0,
+palmitic:21,stearic:6,ricinoleic:0,oleic:54,linoleic:10,linolenic:0,hard:27,cleansing:0,bubbly:0,conditioning:64,creamy:27,saturated:27,mono_unsaturated:54,poly_unsaturated:10},{id:18,name:"Grapeseed Oil",koh_sap:.181,naoh_sap:.1290229032258065,iodine:131,ins:66,lauric:0,myristic:0,palmitic:8,stearic:4,ricinoleic:0,oleic:20,linoleic:68,linolenic:0,hard:12,cleansing:0,bubbly:0,conditioning:88,creamy:12,saturated:12,mono_unsaturated:20,poly_unsaturated:68},{id:19,name:"Hazelnut Oil",koh_sap:.195,naoh_sap:.13900257529852084,
+iodine:97,ins:94,lauric:0,myristic:0,palmitic:5,stearic:3,ricinoleic:0,oleic:75,linoleic:10,linolenic:0,hard:8,cleansing:0,bubbly:0,conditioning:85,creamy:8,saturated:8,mono_unsaturated:75,poly_unsaturated:10},{id:20,name:"Hemp Oil",koh_sap:.193,naoh_sap:.13757690785956164,iodine:165,ins:39,lauric:0,myristic:0,palmitic:6,stearic:2,ricinoleic:0,oleic:12,linoleic:57,linolenic:21,hard:8,cleansing:0,bubbly:0,conditioning:90,creamy:8,saturated:8,mono_unsaturated:12,poly_unsaturated:78},{id:94,name:"Horse Oil",
+koh_sap:.196,naoh_sap:.13971540901800042,iodine:79,ins:117,lauric:0,myristic:3,palmitic:26,stearic:5,ricinoleic:0,oleic:10,linoleic:20,linolenic:19,hard:34,cleansing:3,bubbly:3,conditioning:49,creamy:31,saturated:34,mono_unsaturated:10,poly_unsaturated:39},{id:62,name:"Illipe Butter",koh_sap:.185,naoh_sap:.13187423810372487,iodine:33,ins:152,lauric:0,myristic:0,palmitic:17,stearic:45,ricinoleic:0,oleic:35,linoleic:0,linolenic:0,hard:62,cleansing:0,bubbly:0,conditioning:35,creamy:62,saturated:62,mono_unsaturated:35,
+poly_unsaturated:0},{id:143,name:"Japan Wax",koh_sap:.215,naoh_sap:.1532592496881127,iodine:11,ins:204,lauric:0,myristic:1,palmitic:80,stearic:7,ricinoleic:0,oleic:4,linoleic:0,linolenic:0,hard:88,cleansing:1,bubbly:1,conditioning:4,creamy:87,saturated:88,mono_unsaturated:4,poly_unsaturated:0},{id:108,name:"Jatropha Oil, soapnut seed oil",koh_sap:.193,naoh_sap:.13757690785956164,iodine:102,ins:91,lauric:0,myristic:0,palmitic:9,stearic:7,ricinoleic:0,oleic:44,linoleic:34,linolenic:0,hard:16,cleansing:0,
+bubbly:0,conditioning:78,creamy:16,saturated:16,mono_unsaturated:44,poly_unsaturated:34},{id:21,name:"Jojoba Oil (a Liquid Wax Ester)",koh_sap:.092,naoh_sap:.06558070219212264,iodine:83,ins:11,lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:0,oleic:12,linoleic:0,linolenic:0,hard:0,cleansing:0,bubbly:0,conditioning:12,creamy:0,saturated:0,mono_unsaturated:12,poly_unsaturated:0},{id:51,name:"Karanja Oil",koh_sap:.183,naoh_sap:.1304485706647657,iodine:85,ins:98,lauric:0,myristic:0,palmitic:6,stearic:6,
+ricinoleic:0,oleic:58,linoleic:15,linolenic:0,hard:12,cleansing:0,bubbly:0,conditioning:73,creamy:12,saturated:12,mono_unsaturated:58,poly_unsaturated:15},{id:23,name:"Kokum Butter",koh_sap:.19,naoh_sap:.13543840670112287,iodine:35,ins:155,lauric:0,myristic:0,palmitic:4,stearic:56,ricinoleic:0,oleic:36,linoleic:1,linolenic:0,hard:60,cleansing:0,bubbly:0,conditioning:37,creamy:60,saturated:60,mono_unsaturated:36,poly_unsaturated:1},{id:86,name:"Kpangnan Butter",koh_sap:.191,naoh_sap:.13615124042060245,
+iodine:42,ins:149,lauric:0,myristic:0,palmitic:6,stearic:44,ricinoleic:0,oleic:49,linoleic:1,linolenic:0,hard:50,cleansing:0,bubbly:0,conditioning:50,creamy:50,saturated:50,mono_unsaturated:49,poly_unsaturated:1},{id:24,name:"Kukui nut Oil",koh_sap:.189,naoh_sap:.13472557298164325,iodine:168,ins:24,lauric:0,myristic:0,palmitic:6,stearic:2,ricinoleic:0,oleic:20,linoleic:42,linolenic:29,hard:8,cleansing:0,bubbly:0,conditioning:91,creamy:8,saturated:8,mono_unsaturated:20,poly_unsaturated:71},{id:25,
+name:"Lanolin liquid Wax",koh_sap:.106,naoh_sap:.07556037426483696,iodine:27,ins:83,lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:0,cleansing:0,bubbly:0,conditioning:0,creamy:0,saturated:0,mono_unsaturated:0,poly_unsaturated:0},{id:26,name:"Lard, Pig Tallow (Manteca)",koh_sap:.198,naoh_sap:.1411410764569596,iodine:57,ins:139,lauric:0,myristic:1,palmitic:28,stearic:13,ricinoleic:0,oleic:46,linoleic:6,linolenic:0,hard:42,cleansing:1,bubbly:1,conditioning:52,
+creamy:41,saturated:42,mono_unsaturated:46,poly_unsaturated:6},{id:127,name:"Laurel Fruit Oil",koh_sap:.198,naoh_sap:.1411410764569596,iodine:74,ins:124,lauric:25,myristic:1,palmitic:15,stearic:1,ricinoleic:0,oleic:31,linoleic:26,linolenic:1,hard:42,cleansing:26,bubbly:26,conditioning:58,creamy:16,saturated:42,mono_unsaturated:31,poly_unsaturated:27},{id:125,name:"Lauric Acid",koh_sap:.28,naoh_sap:.1995934414542863,iodine:0,ins:280,lauric:99,myristic:1,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:0,
+linolenic:0,hard:100,cleansing:100,bubbly:100,conditioning:0,creamy:0,saturated:100,mono_unsaturated:0,poly_unsaturated:0},{id:27,name:"Linseed Oil, flax",koh_sap:.19,naoh_sap:.13543840670112287,iodine:180,ins:-6,lauric:0,myristic:0,palmitic:6,stearic:3,ricinoleic:0,oleic:27,linoleic:13,linolenic:50,hard:9,cleansing:0,bubbly:0,conditioning:90,creamy:9,saturated:9,mono_unsaturated:27,poly_unsaturated:63},{id:119,name:"Loofa Seed Oil, Luffa cylinderica",koh_sap:.187,naoh_sap:.13329990554268406,iodine:108,
+ins:79,lauric:0,myristic:0,palmitic:9,stearic:18,ricinoleic:0,oleic:30,linoleic:47,linolenic:0,hard:27,cleansing:0,bubbly:0,conditioning:77,creamy:27,saturated:27,mono_unsaturated:30,poly_unsaturated:47},{id:124,name:"Macadamia Nut Butter",koh_sap:.188,naoh_sap:.13401273926216367,iodine:70,ins:118,lauric:0,myristic:1,palmitic:6,stearic:12,ricinoleic:0,oleic:56,linoleic:3,linolenic:1,hard:19,cleansing:1,bubbly:1,conditioning:60,creamy:18,saturated:19,mono_unsaturated:56,poly_unsaturated:4},{id:28,
+name:"Macadamia Nut Oil",koh_sap:.195,naoh_sap:.13900257529852084,iodine:76,ins:119,lauric:0,myristic:0,palmitic:9,stearic:5,ricinoleic:0,oleic:59,linoleic:2,linolenic:0,hard:14,cleansing:0,bubbly:0,conditioning:61,creamy:14,saturated:14,mono_unsaturated:59,poly_unsaturated:2},{id:141,name:"Mafura Butter, Trichilia emetica ",koh_sap:.198,naoh_sap:.1411410764569596,iodine:66,ins:132,lauric:0,myristic:1,palmitic:37,stearic:3,ricinoleic:0,oleic:49,linoleic:11,linolenic:1,hard:41,cleansing:1,bubbly:1,
+conditioning:61,creamy:40,saturated:41,mono_unsaturated:49,poly_unsaturated:12},{id:29,name:"Mango Seed Butter",koh_sap:.191,naoh_sap:.13615124042060245,iodine:45,ins:146,lauric:0,myristic:0,palmitic:7,stearic:42,ricinoleic:0,oleic:45,linoleic:3,linolenic:0,hard:49,cleansing:0,bubbly:0,conditioning:48,creamy:49,saturated:49,mono_unsaturated:45,poly_unsaturated:3},{id:30,name:"Mango Seed Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:60,ins:130,lauric:0,myristic:0,palmitic:8,stearic:27,ricinoleic:0,
+oleic:52,linoleic:8,linolenic:1,hard:35,cleansing:0,bubbly:0,conditioning:61,creamy:35,saturated:35,mono_unsaturated:52,poly_unsaturated:9},{id:99,name:"Marula Oil",koh_sap:.192,naoh_sap:.13686407414008203,iodine:73,ins:119,lauric:0,myristic:0,palmitic:11,stearic:7,ricinoleic:0,oleic:75,linoleic:4,linolenic:0,hard:18,cleansing:0,bubbly:0,conditioning:79,creamy:18,saturated:18,mono_unsaturated:75,poly_unsaturated:4},{id:31,name:"Meadowfoam Oil",koh_sap:.169,naoh_sap:.12046889859205138,iodine:92,ins:77,
+lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:2,cleansing:0,bubbly:0,conditioning:98,creamy:2,saturated:0,mono_unsaturated:0,poly_unsaturated:100},{id:32,name:"Milk Fat, any bovine",koh_sap:.227,naoh_sap:.16181325432186783,iodine:30,ins:191,lauric:4,myristic:11,palmitic:28,stearic:12,ricinoleic:0,oleic:19,linoleic:2,linolenic:1,hard:55,cleansing:15,bubbly:15,conditioning:22,creamy:40,saturated:55,mono_unsaturated:19,poly_unsaturated:3},{id:130,name:"Milk Thistle Oil",
+koh_sap:.196,naoh_sap:.13971540901800042,iodine:115,ins:81,lauric:0,myristic:0,palmitic:7,stearic:2,ricinoleic:0,oleic:26,linoleic:64,linolenic:0,hard:9,cleansing:0,bubbly:0,conditioning:90,creamy:9,saturated:9,mono_unsaturated:26,poly_unsaturated:64},{id:67,name:"Mink Oil",koh_sap:.196,naoh_sap:.13971540901800042,iodine:55,ins:141,lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:0,cleansing:0,bubbly:0,conditioning:0,creamy:0,saturated:0,mono_unsaturated:0,
+poly_unsaturated:0},{id:69,name:"Monoi de Tahiti  Oil",koh_sap:.255,naoh_sap:.18177259846729646,iodine:9,ins:246,lauric:44,myristic:16,palmitic:10,stearic:3,ricinoleic:0,oleic:0,linoleic:2,linolenic:0,hard:73,cleansing:60,bubbly:60,conditioning:2,creamy:13,saturated:73,mono_unsaturated:0,poly_unsaturated:2},{id:109,name:"Moringa Oil",koh_sap:.192,naoh_sap:.13686407414008203,iodine:68,ins:124,lauric:0,myristic:0,palmitic:7,stearic:7,ricinoleic:0,oleic:71,linoleic:2,linolenic:0,hard:14,cleansing:0,
+bubbly:0,conditioning:73,creamy:14,saturated:14,mono_unsaturated:71,poly_unsaturated:2},{id:63,name:"Mowrah Butter",koh_sap:.194,naoh_sap:.13828974157904123,iodine:62,ins:132,lauric:0,myristic:0,palmitic:24,stearic:22,ricinoleic:0,oleic:36,linoleic:15,linolenic:0,hard:46,cleansing:0,bubbly:0,conditioning:51,creamy:46,saturated:46,mono_unsaturated:36,poly_unsaturated:15},{id:106,name:"Murumuru Butter",koh_sap:.275,naoh_sap:.19602927285688834,iodine:25,ins:250,lauric:47,myristic:26,palmitic:6,stearic:3,
+ricinoleic:0,oleic:15,linoleic:3,linolenic:0,hard:82,cleansing:73,bubbly:73,conditioning:18,creamy:9,saturated:82,mono_unsaturated:15,poly_unsaturated:3},{id:103,name:"Mustard Oil, kachi ghani",koh_sap:.173,naoh_sap:.12332023346996974,iodine:101,ins:72,lauric:0,myristic:0,palmitic:2,stearic:2,ricinoleic:0,oleic:18,linoleic:14,linolenic:9,hard:4,cleansing:0,bubbly:0,conditioning:41,creamy:4,saturated:4,mono_unsaturated:18,poly_unsaturated:23},{id:76,name:"Myristic Acid",koh_sap:.247,naoh_sap:.1760699287114597,
+iodine:1,ins:246,lauric:0,myristic:99,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:99,cleansing:99,bubbly:99,conditioning:0,creamy:0,saturated:99,mono_unsaturated:0,poly_unsaturated:0},{id:121,name:"Neatsfoot Oil",koh_sap:.18,naoh_sap:.1283100695063269,iodine:90,ins:90,lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:0,cleansing:0,bubbly:0,conditioning:0,creamy:0,saturated:0,mono_unsaturated:0,poly_unsaturated:0},{id:33,name:"Neem Seed Oil",
+koh_sap:.193,naoh_sap:.13757690785956164,iodine:72,ins:121,lauric:0,myristic:2,palmitic:21,stearic:16,ricinoleic:0,oleic:46,linoleic:12,linolenic:0,hard:39,cleansing:2,bubbly:2,conditioning:58,creamy:37,saturated:39,mono_unsaturated:46,poly_unsaturated:12},{id:139,name:"Nutmeg Butter",koh_sap:.1624,naoh_sap:.11576419604348605,iodine:46,ins:116,lauric:3,myristic:83,palmitic:4,stearic:0,ricinoleic:0,oleic:5,linoleic:0,linolenic:0,hard:90,cleansing:86,bubbly:86,conditioning:5,creamy:4,saturated:90,mono_unsaturated:5,
+poly_unsaturated:0},{id:117,name:"Oat Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:104,ins:86,lauric:0,myristic:0,palmitic:15,stearic:2,ricinoleic:0,oleic:40,linoleic:39,linolenic:0,hard:17,cleansing:0,bubbly:0,conditioning:79,creamy:17,saturated:17,mono_unsaturated:40,poly_unsaturated:39},{id:88,name:"Oleic Acid",koh_sap:.202,naoh_sap:.143992411334878,iodine:92,ins:110,lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:0,oleic:99,linoleic:0,linolenic:0,hard:0,cleansing:0,bubbly:0,conditioning:99,
+creamy:0,saturated:0,mono_unsaturated:99,poly_unsaturated:0},{id:34,name:"Olive Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:85,ins:105,lauric:0,myristic:0,palmitic:14,stearic:3,ricinoleic:0,oleic:69,linoleic:12,linolenic:1,hard:17,cleansing:0,bubbly:0,conditioning:82,creamy:17,saturated:17,mono_unsaturated:69,poly_unsaturated:13},{id:52,name:"Olive Oil  pomace",koh_sap:.188,naoh_sap:.13401273926216367,iodine:84,ins:104,lauric:0,myristic:0,palmitic:14,stearic:3,ricinoleic:0,oleic:69,linoleic:12,
+linolenic:2,hard:17,cleansing:0,bubbly:0,conditioning:83,creamy:17,saturated:17,mono_unsaturated:69,poly_unsaturated:14},{id:82,name:"Ostrich Oil",koh_sap:.1946,naoh_sap:.13871744181072898,iodine:97,ins:128,lauric:3,myristic:1,palmitic:26,stearic:6,ricinoleic:0,oleic:37,linoleic:17,linolenic:3,hard:36,cleansing:4,bubbly:4,conditioning:57,creamy:32,saturated:36,mono_unsaturated:37,poly_unsaturated:20},{id:35,name:"Palm Kernel Oil",koh_sap:.247,naoh_sap:.1760699287114597,iodine:20,ins:227,lauric:49,
+myristic:16,palmitic:8,stearic:2,ricinoleic:0,oleic:15,linoleic:3,linolenic:0,hard:75,cleansing:65,bubbly:65,conditioning:18,creamy:10,saturated:75,mono_unsaturated:15,poly_unsaturated:3},{id:126,name:"Palm Kernel Oil Flakes, hydrogenated",koh_sap:.247,naoh_sap:.1760699287114597,iodine:20,ins:227,lauric:49,myristic:17,palmitic:8,stearic:16,ricinoleic:0,oleic:4,linoleic:0,linolenic:0,hard:90,cleansing:66,bubbly:66,conditioning:4,creamy:24,saturated:90,mono_unsaturated:4,poly_unsaturated:0},{id:36,
+name:"Palm Oil",koh_sap:.199,naoh_sap:.1418539101764392,iodine:53,ins:145,lauric:0,myristic:1,palmitic:44,stearic:5,ricinoleic:0,oleic:39,linoleic:10,linolenic:0,hard:50,cleansing:1,bubbly:1,conditioning:49,creamy:49,saturated:50,mono_unsaturated:39,poly_unsaturated:10},{id:113,name:"Palm Stearin",koh_sap:.199,naoh_sap:.1418539101764392,iodine:48,ins:151,lauric:0,myristic:2,palmitic:60,stearic:5,ricinoleic:0,oleic:26,linoleic:7,linolenic:0,hard:67,cleansing:2,bubbly:2,conditioning:33,creamy:65,saturated:67,
+mono_unsaturated:26,poly_unsaturated:7},{id:77,name:"Palmitic Acid",koh_sap:.215,naoh_sap:.1532592496881127,iodine:2,ins:213,lauric:0,myristic:0,palmitic:98,stearic:0,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:98,cleansing:0,bubbly:0,conditioning:0,creamy:98,saturated:98,mono_unsaturated:0,poly_unsaturated:0},{id:131,name:"Palmolein",koh_sap:.2,naoh_sap:.1425667438959188,iodine:58,ins:142,lauric:0,myristic:1,palmitic:40,stearic:5,ricinoleic:0,oleic:43,linoleic:11,linolenic:0,hard:46,cleansing:1,
+bubbly:1,conditioning:54,creamy:45,saturated:46,mono_unsaturated:43,poly_unsaturated:11},{id:120,name:"Papaya seed oil, Carica papaya",koh_sap:.158,naoh_sap:.11262772767777585,iodine:67,ins:91,lauric:0,myristic:0,palmitic:13,stearic:5,ricinoleic:0,oleic:76,linoleic:3,linolenic:0,hard:18,cleansing:0,bubbly:0,conditioning:79,creamy:18,saturated:18,mono_unsaturated:76,poly_unsaturated:3},{id:37,name:"Passion Fruit Seed Oil",koh_sap:.183,naoh_sap:.1304485706647657,iodine:136,ins:47,lauric:0,myristic:0,
+palmitic:10,stearic:3,ricinoleic:0,oleic:15,linoleic:70,linolenic:1,hard:13,cleansing:0,bubbly:0,conditioning:86,creamy:13,saturated:13,mono_unsaturated:15,poly_unsaturated:71},{id:148,name:"Pataua (Patawa) Oil",koh_sap:.2,naoh_sap:.1425667438959188,iodine:77,ins:123,lauric:0,myristic:0,palmitic:13,stearic:4,ricinoleic:0,oleic:78,linoleic:3,linolenic:1,hard:17,cleansing:0,bubbly:0,conditioning:82,creamy:17,saturated:17,mono_unsaturated:78,poly_unsaturated:4},{id:70,name:"Peach Kernel Oil",koh_sap:.191,
+naoh_sap:.13615124042060245,iodine:108,ins:87,lauric:0,myristic:0,palmitic:6,stearic:2,ricinoleic:0,oleic:65,linoleic:25,linolenic:1,hard:8,cleansing:0,bubbly:0,conditioning:91,creamy:8,saturated:8,mono_unsaturated:65,poly_unsaturated:26},{id:38,name:"Peanut Oil",koh_sap:.192,naoh_sap:.13686407414008203,iodine:92,ins:99,lauric:0,myristic:0,palmitic:8,stearic:3,ricinoleic:0,oleic:56,linoleic:26,linolenic:0,hard:11,cleansing:0,bubbly:0,conditioning:82,creamy:11,saturated:11,mono_unsaturated:56,poly_unsaturated:26},
+{id:137,name:"Pecan Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:113,ins:77,lauric:0,myristic:0,palmitic:7,stearic:2,ricinoleic:0,oleic:50,linoleic:39,linolenic:2,hard:9,cleansing:0,bubbly:0,conditioning:91,creamy:9,saturated:9,mono_unsaturated:50,poly_unsaturated:41},{id:75,name:"Perilla Seed Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:196,ins:-6,lauric:0,myristic:0,palmitic:6,stearic:2,ricinoleic:0,oleic:15,linoleic:16,linolenic:56,hard:8,cleansing:0,bubbly:0,conditioning:87,creamy:8,
+saturated:8,mono_unsaturated:15,poly_unsaturated:72},{id:85,name:"Pine Tar, lye calc only no FA",koh_sap:.06,naoh_sap:.04277002316877564,iodine:0,ins:0,lauric:0,myristic:0,palmitic:0,stearic:0,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:0,cleansing:0,bubbly:0,conditioning:0,creamy:0,saturated:0,mono_unsaturated:0,poly_unsaturated:0},{id:39,name:"Pistachio Oil",koh_sap:.186,naoh_sap:.13258707182320448,iodine:95,ins:92,lauric:0,myristic:0,palmitic:11,stearic:1,ricinoleic:0,oleic:63,linoleic:25,
+linolenic:0,hard:12,cleansing:0,bubbly:0,conditioning:88,creamy:12,saturated:12,mono_unsaturated:63,poly_unsaturated:25},{id:107,name:"Plum Kernel Oil",koh_sap:.194,naoh_sap:.13828974157904123,iodine:98,ins:96,lauric:0,myristic:0,palmitic:3,stearic:0,ricinoleic:0,oleic:68,linoleic:23,linolenic:0,hard:3,cleansing:0,bubbly:0,conditioning:91,creamy:3,saturated:3,mono_unsaturated:68,poly_unsaturated:23},{id:128,name:"Pomegranate Seed Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:22,ins:168,lauric:0,
+myristic:0,palmitic:3,stearic:3,ricinoleic:0,oleic:7,linoleic:7,linolenic:78,hard:6,cleansing:0,bubbly:0,conditioning:92,creamy:6,saturated:6,mono_unsaturated:7,poly_unsaturated:85},{id:73,name:"Poppy Seed Oil",koh_sap:.194,naoh_sap:.13828974157904123,iodine:140,ins:54,lauric:0,myristic:0,palmitic:10,stearic:2,ricinoleic:0,oleic:17,linoleic:69,linolenic:2,hard:12,cleansing:0,bubbly:0,conditioning:88,creamy:12,saturated:12,mono_unsaturated:17,poly_unsaturated:71},{id:149,name:"Pracaxi (Pracachy) Seed Oil - hair conditioner",
+koh_sap:.175,naoh_sap:.12474590090892894,iodine:68,ins:107,lauric:1,myristic:1,palmitic:2,stearic:2,ricinoleic:0,oleic:44,linoleic:2,linolenic:2,hard:6,cleansing:2,bubbly:2,conditioning:83,creamy:4,saturated:54,mono_unsaturated:42,poly_unsaturated:2},{id:83,name:"Pumpkin Seed Oil virgin",koh_sap:.195,naoh_sap:.13900257529852084,iodine:128,ins:67,lauric:0,myristic:0,palmitic:11,stearic:8,ricinoleic:0,oleic:33,linoleic:50,linolenic:0,hard:19,cleansing:0,bubbly:0,conditioning:83,creamy:19,saturated:19,
+mono_unsaturated:33,poly_unsaturated:50},{id:91,name:"Rabbit Fat",koh_sap:.201,naoh_sap:.1432795776153984,iodine:85,ins:116,lauric:0,myristic:3,palmitic:30,stearic:6,ricinoleic:0,oleic:30,linoleic:20,linolenic:5,hard:39,cleansing:3,bubbly:3,conditioning:55,creamy:36,saturated:39,mono_unsaturated:30,poly_unsaturated:25},{id:40,name:"Rapeseed Oil, unrefined canola",koh_sap:.175,naoh_sap:.12474590090892894,iodine:106,ins:69,lauric:0,myristic:0,palmitic:4,stearic:1,ricinoleic:0,oleic:17,linoleic:13,linolenic:9,
+hard:5,cleansing:0,bubbly:0,conditioning:95,creamy:1,saturated:7,mono_unsaturated:68,poly_unsaturated:25},{id:129,name:"Raspberry Seed Oil",koh_sap:.187,naoh_sap:.13329990554268406,iodine:163,ins:24,lauric:0,myristic:0,palmitic:3,stearic:0,ricinoleic:0,oleic:13,linoleic:55,linolenic:26,hard:3,cleansing:0,bubbly:0,conditioning:94,creamy:3,saturated:3,mono_unsaturated:13,poly_unsaturated:81},{id:89,name:"Red Palm Butter",koh_sap:.199,naoh_sap:.1418539101764392,iodine:53,ins:145,lauric:0,myristic:1,
+palmitic:44,stearic:5,ricinoleic:0,oleic:39,linoleic:10,linolenic:0,hard:50,cleansing:1,bubbly:1,conditioning:49,creamy:49,saturated:50,mono_unsaturated:39,poly_unsaturated:10},{id:41,name:"Rice Bran Oil, refined",koh_sap:.187,naoh_sap:.13329990554268406,iodine:100,ins:87,lauric:0,myristic:1,palmitic:22,stearic:3,ricinoleic:0,oleic:38,linoleic:34,linolenic:2,hard:26,cleansing:1,bubbly:1,conditioning:74,creamy:25,saturated:26,mono_unsaturated:38,poly_unsaturated:36},{id:61,name:"Rosehip Oil",koh_sap:.187,
+naoh_sap:.13329990554268406,iodine:188,ins:10,lauric:0,myristic:0,palmitic:4,stearic:2,ricinoleic:0,oleic:12,linoleic:46,linolenic:31,hard:6,cleansing:0,bubbly:0,conditioning:89,creamy:6,saturated:6,mono_unsaturated:12,poly_unsaturated:77},{id:122,name:"Sacha Inchi, Plukenetia volubilis",koh_sap:.188,naoh_sap:.13401273926216367,iodine:141,ins:47,lauric:0,myristic:0,palmitic:4,stearic:3,ricinoleic:0,oleic:10,linoleic:35,linolenic:48,hard:7,cleansing:0,bubbly:0,conditioning:93,creamy:7,saturated:7,
+mono_unsaturated:10,poly_unsaturated:83},{id:42,name:"Safflower Oil",koh_sap:.192,naoh_sap:.13686407414008203,iodine:145,ins:47,lauric:0,myristic:0,palmitic:7,stearic:0,ricinoleic:0,oleic:15,linoleic:75,linolenic:0,hard:7,cleansing:0,bubbly:0,conditioning:90,creamy:7,saturated:7,mono_unsaturated:15,poly_unsaturated:75},{id:78,name:"Safflower Oil, high oleic",koh_sap:.19,naoh_sap:.13543840670112287,iodine:93,ins:97,lauric:0,myristic:0,palmitic:5,stearic:2,ricinoleic:0,oleic:77,linoleic:15,linolenic:0,
+hard:7,cleansing:0,bubbly:0,conditioning:92,creamy:7,saturated:7,mono_unsaturated:77,poly_unsaturated:15},{id:64,name:"Sal Butter",koh_sap:.185,naoh_sap:.13187423810372487,iodine:39,ins:146,lauric:0,myristic:0,palmitic:6,stearic:44,ricinoleic:0,oleic:40,linoleic:2,linolenic:0,hard:50,cleansing:0,bubbly:0,conditioning:42,creamy:50,saturated:50,mono_unsaturated:40,poly_unsaturated:2},{id:140,name:"Salmon Oil",koh_sap:.185,naoh_sap:.13187423810372487,iodine:169,ins:16,lauric:0,myristic:5,palmitic:19,
+stearic:2,ricinoleic:0,oleic:23,linoleic:2,linolenic:1,hard:28,cleansing:0,bubbly:0,conditioning:72,creamy:3,saturated:28,mono_unsaturated:32,poly_unsaturated:40},{id:111,name:"Saw Palmetto Extract",koh_sap:.23,naoh_sap:.1639517554803066,iodine:45,ins:185,lauric:29,myristic:11,palmitic:8,stearic:2,ricinoleic:0,oleic:35,linoleic:4,linolenic:1,hard:50,cleansing:40,bubbly:40,conditioning:40,creamy:10,saturated:50,mono_unsaturated:35,poly_unsaturated:5},{id:110,name:"Saw Palmetto Oil",koh_sap:.22,naoh_sap:.15682341828551066,
+iodine:44,ins:176,lauric:29,myristic:13,palmitic:9,stearic:2,ricinoleic:0,oleic:31,linoleic:4,linolenic:1,hard:53,cleansing:42,bubbly:42,conditioning:36,creamy:11,saturated:53,mono_unsaturated:31,poly_unsaturated:5},{id:116,name:"Sea Buckthorn Oil, seed",koh_sap:.195,naoh_sap:.13900257529852084,iodine:165,ins:30,lauric:0,myristic:0,palmitic:7,stearic:3,ricinoleic:0,oleic:14,linoleic:36,linolenic:38,hard:10,cleansing:0,bubbly:0,conditioning:88,creamy:10,saturated:10,mono_unsaturated:14,poly_unsaturated:74},
+{id:115,name:"Sea Buckthorn Oil, seed and berry",koh_sap:.183,naoh_sap:.1304485706647657,iodine:86,ins:97,lauric:0,myristic:0,palmitic:30,stearic:1,ricinoleic:0,oleic:28,linoleic:10,linolenic:0,hard:31,cleansing:0,bubbly:0,conditioning:38,creamy:31,saturated:31,mono_unsaturated:28,poly_unsaturated:10},{id:43,name:"Sesame Oil",koh_sap:.188,naoh_sap:.13401273926216367,iodine:110,ins:81,lauric:0,myristic:0,palmitic:10,stearic:5,ricinoleic:0,oleic:40,linoleic:43,linolenic:0,hard:15,cleansing:0,bubbly:0,
+conditioning:83,creamy:15,saturated:15,mono_unsaturated:40,poly_unsaturated:43},{id:44,name:"Shea Butter",koh_sap:.179,naoh_sap:.1275972357868473,iodine:59,ins:116,lauric:0,myristic:0,palmitic:5,stearic:40,ricinoleic:0,oleic:48,linoleic:6,linolenic:0,hard:45,cleansing:0,bubbly:0,conditioning:54,creamy:45,saturated:45,mono_unsaturated:48,poly_unsaturated:6},{id:22,name:"Shea Oil, fractionated",koh_sap:.185,naoh_sap:.13187423810372487,iodine:83,ins:102,lauric:0,myristic:0,palmitic:6,stearic:10,ricinoleic:0,
+oleic:73,linoleic:11,linolenic:0,hard:16,cleansing:0,bubbly:0,conditioning:84,creamy:16,saturated:16,mono_unsaturated:73,poly_unsaturated:11},{id:133,name:"SoapQuick, conventional",koh_sap:.212,naoh_sap:.15112074852967392,iodine:59,ins:153,lauric:13,myristic:6,palmitic:17,stearic:3,ricinoleic:5,oleic:42,linoleic:8,linolenic:1,hard:39,cleansing:19,bubbly:24,conditioning:56,creamy:25,saturated:39,mono_unsaturated:47,poly_unsaturated:9},{id:134,name:"SoapQuick, organic",koh_sap:.213,naoh_sap:.1518335822491535,
+iodine:56,ins:156,lauric:13,myristic:5,palmitic:20,stearic:3,ricinoleic:0,oleic:45,linoleic:10,linolenic:0,hard:41,cleansing:18,bubbly:18,conditioning:55,creamy:23,saturated:41,mono_unsaturated:45,poly_unsaturated:10},{id:45,name:"Soybean Oil",koh_sap:.191,naoh_sap:.13615124042060245,iodine:131,ins:61,lauric:0,myristic:0,palmitic:11,stearic:5,ricinoleic:0,oleic:24,linoleic:50,linolenic:8,hard:16,cleansing:0,bubbly:0,conditioning:82,creamy:16,saturated:16,mono_unsaturated:24,poly_unsaturated:58},{id:81,
+name:"Soybean, 27.5% hydrogenated",koh_sap:.191,naoh_sap:.13615124042060245,iodine:78,ins:113,lauric:0,myristic:0,palmitic:9,stearic:15,ricinoleic:0,oleic:41,linoleic:7,linolenic:1,hard:24,cleansing:0,bubbly:0,conditioning:49,creamy:24,saturated:24,mono_unsaturated:41,poly_unsaturated:8},{id:132,name:"Soybean, fully hydrogenated (soy wax)",koh_sap:.192,naoh_sap:.13686407414008203,iodine:1,ins:191,lauric:0,myristic:0,palmitic:11,stearic:87,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:98,cleansing:0,
+bubbly:0,conditioning:0,creamy:98,saturated:98,mono_unsaturated:0,poly_unsaturated:0},{id:46,name:"Stearic Acid",koh_sap:.198,naoh_sap:.1411410764569596,iodine:2,ins:196,lauric:0,myristic:0,palmitic:0,stearic:99,ricinoleic:0,oleic:0,linoleic:0,linolenic:0,hard:99,cleansing:0,bubbly:0,conditioning:0,creamy:99,saturated:99,mono_unsaturated:0,poly_unsaturated:0},{id:47,name:"Sunflower Oil",koh_sap:.189,naoh_sap:.13472557298164325,iodine:133,ins:63,lauric:0,myristic:0,palmitic:7,stearic:4,ricinoleic:0,
+oleic:16,linoleic:70,linolenic:1,hard:11,cleansing:0,bubbly:0,conditioning:87,creamy:11,saturated:11,mono_unsaturated:16,poly_unsaturated:71},{id:71,name:"Sunflower Oil, high oleic",koh_sap:.189,naoh_sap:.13472557298164325,iodine:83,ins:106,lauric:0,myristic:0,palmitic:3,stearic:4,ricinoleic:0,oleic:83,linoleic:4,linolenic:1,hard:7,cleansing:0,bubbly:0,conditioning:88,creamy:7,saturated:7,mono_unsaturated:83,poly_unsaturated:5},{id:112,name:"Tallow Bear",koh_sap:.1946,naoh_sap:.13871744181072898,
+iodine:92,ins:100,lauric:0,myristic:2,palmitic:7,stearic:3,ricinoleic:0,oleic:70,linoleic:9,linolenic:0,hard:12,cleansing:2,bubbly:2,conditioning:79,creamy:10,saturated:12,mono_unsaturated:70,poly_unsaturated:9},{id:48,name:"Tallow Beef",koh_sap:.2,naoh_sap:.1425667438959188,iodine:45,ins:147,lauric:2,myristic:6,palmitic:28,stearic:22,ricinoleic:0,oleic:36,linoleic:3,linolenic:1,hard:58,cleansing:8,bubbly:8,conditioning:40,creamy:50,saturated:58,mono_unsaturated:36,poly_unsaturated:4},{id:54,name:"Tallow Deer",
+koh_sap:.193,naoh_sap:.13757690785956164,iodine:31,ins:166,lauric:0,myristic:1,palmitic:20,stearic:24,ricinoleic:0,oleic:30,linoleic:15,linolenic:3,hard:45,cleansing:1,bubbly:1,conditioning:48,creamy:44,saturated:45,mono_unsaturated:30,poly_unsaturated:18},{id:123,name:"Tallow Goat",koh_sap:.192,naoh_sap:.13686407414008203,iodine:40,ins:152,lauric:5,myristic:11,palmitic:23,stearic:30,ricinoleic:0,oleic:29,linoleic:2,linolenic:0,hard:69,cleansing:16,bubbly:16,conditioning:31,creamy:53,saturated:69,
+mono_unsaturated:29,poly_unsaturated:2},{id:55,name:"Tallow Sheep",koh_sap:.194,naoh_sap:.13828974157904123,iodine:54,ins:156,lauric:4,myristic:10,palmitic:24,stearic:13,ricinoleic:0,oleic:26,linoleic:5,linolenic:0,hard:51,cleansing:14,bubbly:14,conditioning:31,creamy:37,saturated:51,mono_unsaturated:26,poly_unsaturated:5},{id:57,name:"Tamanu Oil, kamani",koh_sap:.208,naoh_sap:.14826941365175553,iodine:111,ins:82,lauric:0,myristic:0,palmitic:12,stearic:13,ricinoleic:0,oleic:34,linoleic:38,linolenic:1,
+hard:25,cleansing:0,bubbly:0,conditioning:73,creamy:25,saturated:25,mono_unsaturated:34,poly_unsaturated:39},{id:97,name:"Tucuma Seed Butter",koh_sap:.238,naoh_sap:.16965442523614335,iodine:13,ins:175,lauric:48,myristic:23,palmitic:6,stearic:0,ricinoleic:0,oleic:13,linoleic:0,linolenic:0,hard:77,cleansing:71,bubbly:71,conditioning:13,creamy:6,saturated:77,mono_unsaturated:13,poly_unsaturated:0},{id:100,name:"Ucuuba Butter",koh_sap:.205,naoh_sap:.14613091249331675,iodine:38,ins:167,lauric:0,myristic:0,
+palmitic:0,stearic:31,ricinoleic:0,oleic:44,linoleic:5,linolenic:0,hard:31,cleansing:0,bubbly:0,conditioning:49,creamy:31,saturated:31,mono_unsaturated:44,poly_unsaturated:5},{id:105,name:"Walmart GV Shortening, tallow, palm",koh_sap:.198,naoh_sap:.1411410764569596,iodine:49,ins:151,lauric:1,myristic:4,palmitic:35,stearic:14,ricinoleic:0,oleic:37,linoleic:6,linolenic:1,hard:54,cleansing:5,bubbly:5,conditioning:44,creamy:49,saturated:54,mono_unsaturated:37,poly_unsaturated:7},{id:49,name:"Walnut Oil",
+koh_sap:.189,naoh_sap:.13472557298164325,iodine:145,ins:45,lauric:0,myristic:0,palmitic:7,stearic:2,ricinoleic:0,oleic:18,linoleic:60,linolenic:0,hard:9,cleansing:0,bubbly:0,conditioning:78,creamy:9,saturated:9,mono_unsaturated:18,poly_unsaturated:60},{id:135,name:"Watermelon Seed Oil",koh_sap:.19,naoh_sap:.13543840670112287,iodine:119,ins:71,lauric:0,myristic:0,palmitic:11,stearic:10,ricinoleic:0,oleic:18,linoleic:60,linolenic:1,hard:21,cleansing:0,bubbly:0,conditioning:79,creamy:21,saturated:21,
+mono_unsaturated:18,poly_unsaturated:61},{id:50,name:"Wheat Germ Oil",koh_sap:.183,naoh_sap:.1304485706647657,iodine:128,ins:58,lauric:0,myristic:0,palmitic:17,stearic:2,ricinoleic:0,oleic:17,linoleic:58,linolenic:0,hard:19,cleansing:0,bubbly:0,conditioning:75,creamy:19,saturated:19,mono_unsaturated:17,poly_unsaturated:58},{id:98,name:"Yangu, cape chestnut",koh_sap:.192,naoh_sap:.13686407414008203,iodine:95,ins:97,lauric:0,myristic:0,palmitic:18,stearic:5,ricinoleic:0,oleic:45,linoleic:30,linolenic:1,
+hard:23,cleansing:0,bubbly:0,conditioning:76,creamy:23,saturated:23,mono_unsaturated:45,poly_unsaturated:31},{id:118,name:"Zapote seed oil, (Aceite de Sapuyul or Mamey)",koh_sap:.188,naoh_sap:.13401273926216367,iodine:72,ins:116,lauric:0,myristic:0,palmitic:9,stearic:21,ricinoleic:0,oleic:52,linoleic:13,linolenic:0,hard:30,cleansing:0,bubbly:0,conditioning:65,creamy:30,saturated:30,mono_unsaturated:52,poly_unsaturated:13}],q={};C.forEach(function(a){q[a.id]=a});var T=null;C.sort(function(a,d){return a.name.localeCompare(d.name)});
+var Aa=c("all_oils_table_body"),za=c("recipe_oils_table_body"),F=c("oil_search_bar"),da=Da(""),Na=c("filter_info_text"),ua=c("lye_naoh"),va=c("lye_koh"),wa=c("dual_lye"),J=c("naoh_part"),L=c("naoh_purity"),K=c("koh_part"),M=c("koh_purity"),N=c("oil_weight"),O=c("lye_solution_percent"),P=c("lye_ratio"),ca=c("water_percent_of_oil"),xa=c("super_fat_percent"),ya=c("lye_discount_percent"),Ra=c("convert_to_percent_based_recipe_btn"),Ja=c("convert_to_weight_based_recipe_btn"),G=c("recipe_graph_canvas"),
+t=G.getContext("2d"),Sa=c("import_recipe"),Oa=c("export_recipe_json");c("show-readme-btn").addEventListener("click",function(){var a=c("readme-box");a.style.display="block"!=a.style.display?"block":"none"});c("th_name").addEventListener("click",function(){C.sort(function(a,d){return a.name.localeCompare(d.name)});T=null;S()});c("th_sap_naoh").addEventListener("click",function(){n("naoh_sap")});c("th_sap_koh").addEventListener("click",function(){n("sap_koh")});c("th_hard").addEventListener("click",
+function(){n("hard")});c("th_cleansing").addEventListener("click",function(){n("cleansing")});c("th_bubbly").addEventListener("click",function(){n("bubbly")});c("th_conditioning").addEventListener("click",function(){n("conditioning")});c("th_creamy").addEventListener("click",function(){n("creamy")});c("th_iodine").addEventListener("click",function(){n("iodine")});c("th_ins").addEventListener("click",function(){n("ins")});c("th_lauric").addEventListener("click",function(){n("lauric")});c("th_myristic").addEventListener("click",
+function(){n("myristic")});c("th_palmitic").addEventListener("click",function(){n("palmitic")});c("th_stearic").addEventListener("click",function(){n("stearic")});c("th_ricinoleic").addEventListener("click",function(){n("ricinoleic")});c("th_oleic").addEventListener("click",function(){n("oleic")});c("th_linoleic").addEventListener("click",function(){n("linoleic")});c("th_linolenic").addEventListener("click",function(){n("linolenic")});c("th_saturated").addEventListener("click",function(){n("saturated")});
+c("th_mono_unsaturated").addEventListener("click",function(){n("mono_unsaturated")});c("th_poly_unsaturated").addEventListener("click",function(){n("poly_unsaturated")});G.width=1600;G.height=192;S();r(-1);var Ca=F.value="";F.addEventListener("change",fa);F.addEventListener("keyup",fa);c("clear_search_btn").addEventListener("click",function(){F.value="";fa()});ua.addEventListener("change",function(){ua.checked&&(b.dual_lye=0);b.naoh_part=100;b.koh_part=0;r(-1)});va.addEventListener("change",function(){va.checked&&
+(b.dual_lye=1);b.naoh_part=0;b.koh_part=100;r(-1)});wa.addEventListener("change",function(){wa.checked&&(b.dual_lye=2);r(-1)});N.addEventListener("change",function(){if(0==N.value.trim().length)b.oil_weight=null,r(-1);else{var a=parseFloat(N.value);!isNaN(a)&&isFinite(a)?(b.oil_weight=a,r(-1)):N.style.backgroundColor="red"}});Ra.addEventListener("click",function(){var a=U(b.oil_parts);0!=a&&(b.oil_parts=b.oil_parts.map(function(d){return k(d/a*100)}),null==b.oil_weight&&(b.oil_weight=a),r(-1))});
+Ja.addEventListener("click",function(){if(null!=b.oil_weight){var a=U(b.oil_parts);0!=a&&(b.oil_parts=b.oil_parts.map(function(d){return null==b.oil_weight?0:k(d/a*b.oil_weight)}),b.oil_weight=null,r(-1))}});E(J,function(a){if(0>a)return!1;b.naoh_part=a;return!0});E(K,function(a){if(0>a)return!1;b.koh_part=a;return!0});E(L,function(a){if(0>=a||100<a)return!1;b.naoh_purity=a/100;return!0});E(M,function(a){if(0>=a||100<a)return!1;b.koh_purity=a/100;return!0});E(O,function(a){if(0>=a||100<a)return!1;
+b.water=a/100;b.water_mode=1;return!0});E(P,function(a){if(0>=a)return!1;b.water=a;b.water_mode=0;return!0});E(ca,function(a){if(0>=a||100<a)return!1;b.water=a/100;b.water_mode=2;return!0});E(xa,function(a){b.super_fat=a/100;return!0});E(ya,function(a){if(100<=a)return!1;b.super_fat=a/(100-a);return!0});var La=R();c("reset_btn").addEventListener("click",function(){Qa()||(La=b,b=R());r(-1)});c("undo_reset_btn").addEventListener("click",function(){b=La;r(-1)});c("import_recipe_btn").addEventListener("click",
+function(){var a=c("import_recipe_feedback"),d=Pa(Sa.value,function(e){b=e;r(-1)});a.style.display="inline-block";0==d.length?(a.style.backgroundColor="#e3fafc",a.innerText="Import success."):(a.style.backgroundColor="red",a.innerText=d)});window.addEventListener("keydown",function(a){return a.target&&"nodeName"in a.target&&"INPUT"==a.target.nodeName?!0:"/"==a.key?(F.focus(),a.preventDefault(),!1):!0})});
+</script>
+<style>
+body {
+	font-family: sans-serif;
+	font-size: 11pt;
+}
+
+h1 {
+	display: inline;
+}
+
+#readme-box {
+	display: none;
+}
+
+th {
+	border: solid 1px black;
+	text-align: center;
+	padding: 3px;
+}
+
+tbody tr:nth-child(even) {
+	background-color: rgb(242, 252, 247);
+}
+
+tbody tr:nth-child(odd) {
+	background-color: rgb(222, 233, 227);
+}
+
+tbody tr:hover {
+	background-color: rgb(177, 193, 240);
+}
+
+.cursor {
+	cursor: pointer;
+}
+
+#oil_search_bar {
+	width: 300px;
+}
+
+.small-margin-bottom {
+	margin-bottom: 4px;
+}
+
+.small-margin-top {
+	margin-top: 4px;
+}
+
+.small-margin-left {
+	margin-left: 4px;
+}
+
+canvas {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.text_input {
+	width: 200px;
+}
+
+#import_recipe {
+	width: 400px;
+}
+
+#import_recipe_feedback {
+	padding: 5px;
+	display: none;
+	margin-right: auto;
+}
+
+#export_recipe_json {
+	font-family: monospace;
+}
+
+.fake-table {
+	display: table;
+}
+
+.fake-tr {
+	display: table-row;
+}
+
+.fake-td {
+	display: table-cell;
+	padding-right: 50px;
+	padding-top: 4px;
+}
+</style>
+</head>
+
+<body>
+	<h1>Soap Lye Calculator</h1>
+	<button class="small-margin-left" id="show-readme-btn">Show/Hide Info</button>
+	<div id="readme-box">
+<h2>Information</h2>
+<p>This is a Javascript-only soap calculator able to be deployed as a
+single html file and works fine offline when downloaded locally as no web
+requests are made.</p>
+<p>Other reasons why I made this over the existing calculators are:</p>
+<ul>
+<li>The calculations update instantly as you edit the recipe.</li>
+<li>The information density is increased.</li>
+<li>Navigating using the tab key works much better.</li>
+</ul>
+<p>For a live version of this see: <a href="https://malkiewiczm.github.io/soap/">https://malkiewiczm.github.io/soap/</a></p>
+<p>For the source code see: <a href="https://github.com/malkiewiczm/soap_lye_calculator">https://github.com/malkiewiczm/soap_lye_calculator</a></p>
+<h2>Q and A</h2>
+<p><strong>Q:</strong> Where are the saponification and fatty acid values derived from?</p>
+<p><strong>A:</strong> They are taken from <a href="http://www.soapcalc.net/">www.SoapCalc.net</a>. Based on what I've seen other
+online calculators take them from too but without credit.</p>
+<p><strong>Q:</strong> Why is your definition of "super fat" different than "lye
+discount". Aren't they the same thing?</p>
+<p><strong>A:</strong> I took "super fat" to mean "use this percent more fat in the
+recipe" and "lye discount" to mean "use this percent less lye in the
+recipe". Online most people refer to them as being the same thing,
+taking on the latter definition but it made more sense to me this way.</p>
+<p><strong>Q:</strong> Why is there no "water discount" field?</p>
+<p><strong>A:</strong> Water discount doesn't make that much sense to me. If the
+intended purpose is to use less water in the recipe, then just enter a
+higher lye concetration.</p>
+<p><strong>Q:</strong> Why is there no field for fragrance or additives?</p>
+<p><strong>A:</strong> IDK</p>
+<p><strong>Q:</strong> What units are the weights in?</p>
+<p><strong>A:</strong> The units can be whatever you want to be. Since all the math is
+relative the units of weight don't matter as long as they are the
+consistent. If you take a recipe that makes 500g of soap and use it to
+make 500 lbs of soap all of the numbers are the same.</p>
+<p><strong>Q:</strong> What do the symbols and colors on the bar graph mean?</p>
+<p><strong>A:</strong> The dark triangles show where the different oils in your recipe
+lie on the graph. The hashed lines show where the recipe currently
+lies. Since the soap recipe is a ratio of oils, the level indicated by
+the hashes will always be between the triangles and can be thought of
+as your recipe being "pulled" towards the triangles depending on how
+much of that oil is present. The background color is lighter where the
+recommended amount is from <a href="http://www.soapcalc.net/">www.SoapCalc.net</a> is, but that is just a
+general guideline.</p>	</div>
+	<form action="javascript:void(0);">
+		<fieldset>
+			<legend>Lye Type</legend>
+			<div>
+				<label>
+					<input id="lye_naoh" name="lye" type="radio">
+					Sodium hydroxide (NaOH)
+				</label>
+			</div>
+			<div>
+				<label>
+					<input id="lye_koh" name="lye" type="radio">
+					Potassium hydroxide (KOH)
+				</label>
+			</div>
+			<div>
+				<label>
+					<input id="dual_lye" name="lye" type="radio">
+					Dual Lye (Mixture of NaOH and KOH)
+				</label>
+			</div>
+			<div class="fake-table">
+				<div class="fake-tr">
+					<label class="fake-td">
+						<input id="naoh_part" type="text" class="text_input">
+						NaOH part / percent
+					</label>
+					<label class="fake-td">
+						<input id="naoh_purity" type="text" class="text_input">
+						NaOH purity percent
+					</label>
+				</div>
+				<div class="fake-tr">
+					<label class="fake-td">
+						<input id="koh_part" type="text" class="text_input">
+						KOH part / percent
+					</label>
+					<label class="fake-td">
+						<input id="koh_purity" type="text" class="text_input">
+						KOH purity percent
+					</label>
+				</div>
+			</div>
+			<div class="small-margin-top">NaOH percent: <span id="naoh_percent_info">--</span>; Multiplier accounting
+				for purity: <span id="naoh_multiplier_info">--</span></div>
+			<div class="small-margin-top">KOH percent: <span id="koh_percent_info">--</span>; Multiplier accounting for
+				purity: <span id="koh_multiplier_info">--</span></div>
+		</fieldset>
+		<fieldset>
+			<legend>Oil weight</legend>
+			<div>
+				<label>
+					<input id="oil_weight" type="text" class="text_input">
+					Oil weight
+				</label>
+				<p>
+					Provide the total oil weight if the recipe is percent or ratio based, otherwise this will be
+					summed from the recipe.
+				</p>
+				<div>
+					Total oil weight: <span id="oil_weight_info">--</span>
+				</div>
+				<div class="small-margin-top">
+					<button id="convert_to_percent_based_recipe_btn" type="button">Convert Inputs to Percents</button>
+					<button id="convert_to_weight_based_recipe_btn" type="button">Convert Inputs to Weights</button>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Water</legend>
+			<div>
+				<label>
+					<input id="lye_solution_percent" type="text" class="text_input">
+					Lye solution concetration percentage (by weight)
+				</label>
+			</div>
+			<div>
+				or
+			</div>
+			<div>
+				<label>
+					<input id="lye_ratio" type="text" class="text_input">
+					Water : lye ratio (by weight)
+				</label>
+			</div>
+			<div>
+				or
+			</div>
+			<div>
+				<label>
+					<input id="water_percent_of_oil" type="text" class="text_input">
+					Water as a percent of oil
+				</label>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Super fat</legend>
+			<div>
+				<div class="small-margin-bottom">
+					<label>
+						<input id="super_fat_percent" type="text" class="text_input">
+						Super fat percent
+					</label>
+				</div>
+				<div class="small-margin-bottom">
+					or
+				</div>
+				<div class="small-margin-bottom">
+					<label>
+						<input id="lye_discount_percent" type="text" class="text_input">
+						Lye discount percent
+					</label>
+				</div>
+				<div>Lye multiplier: <span id="lye_multiplier_info">--</span></div>
+				<p>
+					The recipe will use <span id="super_fat_percent_info">X</span>% more oil than would be necessary for
+					a complete reaction.
+				</p>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Oils</legend>
+			<div>Current recipe:</div>
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<th>Remove</th>
+							<th>Oil</th>
+							<th>Weight / Part / Percent</th>
+							<th>Percent</th>
+							<th>Weight</th>
+						</tr>
+					</thead>
+					<tbody id="recipe_oils_table_body"></tbody>
+				</table>
+			</div>
+			<div>Required water and lye:</div>
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<th>Water Weight</th>
+							<th id="header_required_naoh_info">Sodium Hydroxide (NaOH) Weight</th>
+							<th id="header_required_koh_info">Potassium Hydroxide (KOH) Weight</th>
+							<th>Total Weight of Solution</th>
+							<th>Total Weight of Ingredients</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td id="required_water_info">--</td>
+							<td id="required_naoh_info">--</td>
+							<td id="required_koh_info">--</td>
+							<td id="water_lye_sum_info">--</td>
+							<td id="oil_water_lye_sum_info">--</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div>Current recipe properties:</div>
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<th>Hard</th>
+							<th>Cleansing</th>
+							<th>Bubbly</th>
+							<th>Conditioning</th>
+							<th>Creamy</th>
+							<th>Iodine</th>
+							<th>INS</th>
+							<th>Lauric</th>
+							<th>Myristic</th>
+							<th>Palmitic</th>
+							<th>Stearic</th>
+							<th>Ricinoleic</th>
+							<th>Oleic</th>
+							<th>Linoleic</th>
+							<th>Linolenic</th>
+							<th>Saturated</th>
+							<th>Mono Unsaturated</th>
+							<th>Poly Unsaturated</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td id="recipe_hard_info">--</td>
+							<td id="recipe_cleansing_info">--</td>
+							<td id="recipe_bubbly_info">--</td>
+							<td id="recipe_conditioning_info">--</td>
+							<td id="recipe_creamy_info">--</td>
+							<td id="recipe_iodine_info">--</td>
+							<td id="recipe_ins_info">--</td>
+							<td id="recipe_lauric_info">--</td>
+							<td id="recipe_myristic_info">--</td>
+							<td id="recipe_palmitic_info">--</td>
+							<td id="recipe_stearic_info">--</td>
+							<td id="recipe_ricinoleic_info">--</td>
+							<td id="recipe_oleic_info">--</td>
+							<td id="recipe_linoleic_info">--</td>
+							<td id="recipe_linolenic_info">--</td>
+							<td id="recipe_saturated_info">--</td>
+							<td id="recipe_mono_unsaturated_info">--</td>
+							<td id="recipe_poly_unsaturated_info">--</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div>
+				<canvas id="recipe_graph_canvas"></canvas>
+			</div>
+			<div>
+				All oils:
+			</div>
+			<div>
+				<label>Search: <input type="text" id="oil_search_bar"></label>
+				<button id="clear_search_btn" type="button">Clear Search</button>
+				<span id="filter_info_text"></span>
+			</div>
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<th>Add</th>
+							<th id="th_name" class="cursor">Name</th>
+							<th id="th_sap_naoh" class="cursor">sap NaOH</th>
+							<th id="th_sap_koh" class="cursor">sap KOH</th>
+							<th id="th_hard" class="cursor">Hard</th>
+							<th id="th_cleansing" class="cursor">Cleansing</th>
+							<th id="th_bubbly" class="cursor">Bubbly</th>
+							<th id="th_conditioning" class="cursor">Conditioning</th>
+							<th id="th_creamy" class="cursor">Creamy</th>
+							<th id="th_iodine" class="cursor">Iodine</th>
+							<th id="th_ins" class="cursor">INS</th>
+							<th id="th_lauric" class="cursor">Lauric</th>
+							<th id="th_myristic" class="cursor">Myristic</th>
+							<th id="th_palmitic" class="cursor">Palmitic</th>
+							<th id="th_stearic" class="cursor">Stearic</th>
+							<th id="th_ricinoleic" class="cursor">Ricinoleic</th>
+							<th id="th_oleic" class="cursor">Oleic</th>
+							<th id="th_linoleic" class="cursor">Linoleic</th>
+							<th id="th_linolenic" class="cursor">Linolenic</th>
+							<th id="th_saturated" class="cursor">Saturated</th>
+							<th id="th_mono_unsaturated" class="cursor">Mono Unsaturated</th>
+							<th id="th_poly_unsaturated" class="cursor">Poly Unsaturated</th>
+							<th>Find Similar Oils</th>
+							<th>Similarity Score</th>
+						</tr>
+					</thead>
+					<tbody id="all_oils_table_body"></tbody>
+				</table>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Reset</legend>
+			<div>
+				<button id="reset_btn" type="button">Reset</button>
+				<button id="undo_reset_btn" type="button">Undo Reset</button>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Import and Export</legend>
+			<div class="small-margin-bottom">
+				<input id="import_recipe" type="text" class="text_input">
+				<button id="import_recipe_btn" type="button">Import Recipe</button>
+			</div>
+			<div id="import_recipe_feedback" class="small-margin-bottom"></div>
+			<div class="small-margin-bottom">Exported recipe:</div>
+			<div id="export_recipe_json"></div>
+		</fieldset>
+	</form>
+</body>
+
+</html>
