@@ -4,3 +4,6 @@ https://malkiewiczm.github.io/
 particular reason.
 
 bv_js is BezierView.js, my senior project
+
+soap is a soap calculator. The source code is available at
+https://github.com/malkiewiczm/soap_lye_calculator
